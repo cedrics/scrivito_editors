@@ -1,0 +1,321 @@
+/*
+  Defines various button styles used throughout the inplace editing GUI. Button styles are not
+  bound to one particular inplace editing feature, but are shared accross the menubar, the
+  mediabrowser or on edit views.
+*/
+
+.editing-button {
+  border: 1px solid #bbb;
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 14px;
+  margin: 0 10px 10px 0;
+  min-height: 14px;
+  min-width: 20px;
+  padding: 7px 10px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  vertical-align: middle;
+  background-color: #f2f2f2;
+  background-image: -moz-linear-gradient(top, #ffffff, #dfdfdf);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#dfdfdf));
+  background-image: -webkit-linear-gradient(top, #ffffff, #dfdfdf);
+  background-image: -o-linear-gradient(top, #ffffff, #dfdfdf);
+  background-image: linear-gradient(to bottom, #ffffff, #dfdfdf);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffdfdfdf', GradientType=0);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 3px #ffffff;
+  -moz-box-shadow: 0 0 3px #ffffff;
+  box-shadow: 0 0 3px #ffffff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.editing-button:hover {
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: pointer;
+  background-color: #fbfbfb;
+  background-image: -moz-linear-gradient(top, #ffffff, #f6f6f6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f6f6f6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #f6f6f6);
+  background-image: -o-linear-gradient(top, #ffffff, #f6f6f6);
+  background-image: linear-gradient(to bottom, #ffffff, #f6f6f6);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff6f6f6', GradientType=0);
+}
+
+.editing-button:active {
+  border: 1px solid #bbb;
+  color: #333;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: linear-gradient(to bottom, #eeeeee, #cccccc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeeee', endColorstr='#ffcccccc', GradientType=0);
+}
+
+input.editing-button {
+  height: 30px;
+}
+
+a.editing-button,
+a.editing-button:active {
+  text-decoration: none;
+}
+
+.editing-button.editing-darkgrey {
+  background-color: #585858;
+  background-image: -moz-linear-gradient(top, #666666, #444444);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#666666), to(#444444));
+  background-image: -webkit-linear-gradient(top, #666666, #444444);
+  background-image: -o-linear-gradient(top, #666666, #444444);
+  background-image: linear-gradient(to bottom, #666666, #444444);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff666666', endColorstr='#ff444444', GradientType=0);
+  border: 1px solid #555;
+  color: #fff;
+  text-shadow: 0 1px 0 #333;
+}
+
+.editing-button.editing-darkgrey:hover {
+  background-color: #7a7a7a;
+  background-image: -moz-linear-gradient(top, #888888, #666666);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#888888), to(#666666));
+  background-image: -webkit-linear-gradient(top, #888888, #666666);
+  background-image: -o-linear-gradient(top, #888888, #666666);
+  background-image: linear-gradient(to bottom, #888888, #666666);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff888888', endColorstr='#ff666666', GradientType=0);
+  border: 1px solid #222;
+  color: #fff;
+}
+
+.editing-button.editing-darkgrey:active {
+  background-color: #525252;
+  background-image: -moz-linear-gradient(top, #666666, #333333);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#666666), to(#333333));
+  background-image: -webkit-linear-gradient(top, #666666, #333333);
+  background-image: -o-linear-gradient(top, #666666, #333333);
+  background-image: linear-gradient(to bottom, #666666, #333333);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff666666', endColorstr='#ff333333', GradientType=0);
+  border: 1px solid #111;
+  color: #fff;
+}
+
+.editing-button.editing-blue {
+  background-color: #657ba0;
+  background-image: -moz-linear-gradient(top, #7f91b5, #3e5a81);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7f91b5), to(#3e5a81));
+  background-image: -webkit-linear-gradient(top, #7f91b5, #3e5a81);
+  background-image: -o-linear-gradient(top, #7f91b5, #3e5a81);
+  background-image: linear-gradient(to bottom, #7f91b5, #3e5a81);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7f91b5', endColorstr='#ff3e5a81', GradientType=0);
+  border: 1px solid #555;
+  color: #fff;
+  text-shadow: 0 1px 0 #333;
+}
+
+.editing-button.editing-blue:hover {
+  background-color: #6f82a7;
+  background-image: -moz-linear-gradient(top, #7f91b5, #586c93);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7f91b5), to(#586c93));
+  background-image: -webkit-linear-gradient(top, #7f91b5, #586c93);
+  background-image: -o-linear-gradient(top, #7f91b5, #586c93);
+  background-image: linear-gradient(to bottom, #7f91b5, #586c93);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff7f91b5', endColorstr='#ff586c93', GradientType=0);
+  border: 1px solid #222;
+  color: #fff;
+}
+
+.editing-button.editing-blue:active {
+  background-color: #64779d;
+  background-image: -moz-linear-gradient(top, #6c7ea3, #586c93);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6c7ea3), to(#586c93));
+  background-image: -webkit-linear-gradient(top, #6c7ea3, #586c93);
+  background-image: -o-linear-gradient(top, #6c7ea3, #586c93);
+  background-image: linear-gradient(to bottom, #6c7ea3, #586c93);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6c7ea3', endColorstr='#ff586c93', GradientType=0);
+  border: 1px solid #111;
+  color: #fff;
+}
+
+.editing-button.editing-green {
+  background-color: #869e69;
+  background-image: -moz-linear-gradient(top, #a5bc83, #587041);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a5bc83), to(#587041));
+  background-image: -webkit-linear-gradient(top, #a5bc83, #587041);
+  background-image: -o-linear-gradient(top, #a5bc83, #587041);
+  background-image: linear-gradient(to bottom, #a5bc83, #587041);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa5bc83', endColorstr='#ff587041', GradientType=0);
+  border: 1px solid #555;
+  color: #fff;
+  text-shadow: 0 1px 0 #333;
+}
+
+.editing-button.editing-green:hover {
+  background-color: #91a871;
+  background-image: -moz-linear-gradient(top, #a5bc83, #738a55);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#a5bc83), to(#738a55));
+  background-image: -webkit-linear-gradient(top, #a5bc83, #738a55);
+  background-image: -o-linear-gradient(top, #a5bc83, #738a55);
+  background-image: linear-gradient(to bottom, #a5bc83, #738a55);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffa5bc83', endColorstr='#ff738a55', GradientType=0);
+  border: 1px solid #222;
+  color: #fff;
+}
+
+.editing-button.editing-green:active {
+  background-color: #728757;
+  background-image: -moz-linear-gradient(top, #8ea36f, #485e32);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8ea36f), to(#485e32));
+  background-image: -webkit-linear-gradient(top, #8ea36f, #485e32);
+  background-image: -o-linear-gradient(top, #8ea36f, #485e32);
+  background-image: linear-gradient(to bottom, #8ea36f, #485e32);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff8ea36f', endColorstr='#ff485e32', GradientType=0);
+  border: 1px solid #111;
+  color: #fff;
+}
+
+.editing-button.editing-red {
+  background-color: #a54d49;
+  background-image: -moz-linear-gradient(top, #c66763, #742621);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c66763), to(#742621));
+  background-image: -webkit-linear-gradient(top, #c66763, #742621);
+  background-image: -o-linear-gradient(top, #c66763, #742621);
+  background-image: linear-gradient(to bottom, #c66763, #742621);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc66763', endColorstr='#ff742621', GradientType=0);
+  border: 1px solid #555;
+  color: #fff;
+  text-shadow: 0 1px 0 #333;
+}
+
+.editing-button.editing-red:hover {
+  background-color: #b85c57;
+  background-image: -moz-linear-gradient(top, #c66763, #a24b46);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c66763), to(#a24b46));
+  background-image: -webkit-linear-gradient(top, #c66763, #a24b46);
+  background-image: -o-linear-gradient(top, #c66763, #a24b46);
+  background-image: linear-gradient(to bottom, #c66763, #a24b46);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc66763', endColorstr='#ffa24b46', GradientType=0);
+  border: 1px solid #222;
+  color: #fff;
+}
+
+.editing-button.editing-red:active {
+  background-color: #ae5550;
+  background-image: -moz-linear-gradient(top, #c66763, #8b3934);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c66763), to(#8b3934));
+  background-image: -webkit-linear-gradient(top, #c66763, #8b3934);
+  background-image: -o-linear-gradient(top, #c66763, #8b3934);
+  background-image: linear-gradient(to bottom, #c66763, #8b3934);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc66763', endColorstr='#ff8b3934', GradientType=0);
+  border: 1px solid #111;
+  color: #fff;
+}
+
+.editing-button.editing-yellow {
+  background-color: #b79f50;
+  background-image: -moz-linear-gradient(top, #d7ba68, #86772b);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d7ba68), to(#86772b));
+  background-image: -webkit-linear-gradient(top, #d7ba68, #86772b);
+  background-image: -o-linear-gradient(top, #d7ba68, #86772b);
+  background-image: linear-gradient(to bottom, #d7ba68, #86772b);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd7ba68', endColorstr='#ff86772b', GradientType=0);
+  border: 1px solid #555;
+  color: #fff;
+  text-shadow: 0 1px 0 #333;
+}
+
+.editing-button.editing-yellow:hover {
+  background-color: #c5ab5d;
+  background-image: -moz-linear-gradient(top, #cbb060, #bda458);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#cbb060), to(#bda458));
+  background-image: -webkit-linear-gradient(top, #cbb060, #bda458);
+  background-image: -o-linear-gradient(top, #cbb060, #bda458);
+  background-image: linear-gradient(to bottom, #cbb060, #bda458);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcbb060', endColorstr='#ffbda458', GradientType=0);
+  border: 1px solid #222;
+  color: #fff;
+}
+
+.editing-button.editing-yellow:active {
+  background-color: #b29c4d;
+  background-image: -moz-linear-gradient(top, #c8ad5d, #928235);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#c8ad5d), to(#928235));
+  background-image: -webkit-linear-gradient(top, #c8ad5d, #928235);
+  background-image: -o-linear-gradient(top, #c8ad5d, #928235);
+  background-image: linear-gradient(to bottom, #c8ad5d, #928235);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc8ad5d', endColorstr='#ff928235', GradientType=0);
+  border: 1px solid #111;
+  color: #fff;
+}
+
+.editing-button.editing-disabled,
+.editing-button.editing-disabled:hover,
+.editing-button.editing-disabled:active {
+  border-color: #bbb!important;
+  color: #aaa!important;
+  cursor: not-allowed;
+  text-shadow: 0 1px 0 #fff!important;
+  background-color: #e2e2e2;
+  background-image: -moz-linear-gradient(top, #efefef, #cfcfcf);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#efefef), to(#cfcfcf));
+  background-image: -webkit-linear-gradient(top, #efefef, #cfcfcf);
+  background-image: -o-linear-gradient(top, #efefef, #cfcfcf);
+  background-image: linear-gradient(to bottom, #efefef, #cfcfcf);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffefefef', endColorstr='#ffcfcfcf', GradientType=0);
+}
+
+.editing-button.editing-disabled .editing-icon {
+  color: #aaa!important;
+  text-shadow: 0 1px 0 #fff!important;
+}
+
+.editing-button .editing-icon {
+  color: #333;
+  font-size: 9px;
+  line-height: 14px;
+  text-shadow: 0 1px 1px #fff;
+}
+
+.editing-button .editing-icon:hover {
+  cursor: pointer;
+}
+
+.editing-button.editing-darkgrey .editing-icon,
+.editing-button.editing-blue .editing-icon,
+.editing-button.editing-green .editing-icon,
+.editing-button.editing-red .editing-icon,
+.editing-button.editing-yellow .editing-icon {
+  color: #fff;
+  text-shadow: 0 1px 1px #333;
+}
