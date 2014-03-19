@@ -25,14 +25,10 @@ $ ->
     lastSaved = getLastSaved(cmsField)
 
     unless JSON.stringify(ids) == JSON.stringify(lastSaved)
-      cmsField.addClass('saving')
-
       cmsField.scrival('save', ids)
         .done ->
           storeLastSaved(cmsField, ids)
           cmsField.trigger('scrival_reload')
-        .fail ->
-          cmsField.removeClass('saving')
 
   # Run when clicking the media browser button.
   onMediabrowserOpen = (event) ->

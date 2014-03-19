@@ -19,14 +19,10 @@ $ ->
 
     # Save single reference when media browser calls "save".
     onMediabrowserSave = (selection, cmsField) ->
-      cmsField.addClass('saving')
-
       value = selection[0] || null
 
       cmsField.scrival('save', value)
       .done ->
         cmsField.trigger('scrival_reload')
-      .fail ->
-        cmsField.removeClass('saving')
 
       true

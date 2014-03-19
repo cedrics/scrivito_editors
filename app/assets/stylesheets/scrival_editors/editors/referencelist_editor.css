@@ -1,0 +1,23 @@
+/*
+  An editor to handle CMS referencelist attributes.
+*/
+
+[data-scrival-field-type=referencelist] ul {
+  list-style: none;
+  margin: 0;
+}
+
+[data-scrival-field-type=referencelist] ul li {
+  background-color: #f8f8f8;
+  margin: 1px 0 1px 0;
+  padding: 10px 0 0 30px;
+}
+
+[data-scrival-field-type=referencelist] ul li.ui-sortable-helper {
+  border: 1px dotted #000;
+}
+
+[data-scrival-field-type=referencelist] ul li:hover {
+  background-color: #e1e9f5;
+  cursor: move;
+}

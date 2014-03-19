@@ -51,15 +51,10 @@ $ ->
       if timeout
         clearTimeout(timeout)
 
-      if closeInput
-        box.addClass('saving')
-
       cmsField.scrival('save', content).done ->
         if closeInput
           cmsField.html(content)
           disableEditMode(box)
-      .fail ->
-        box.removeClass('saving')
 
     cancel = (event) ->
       box = getBox($(event.currentTarget))

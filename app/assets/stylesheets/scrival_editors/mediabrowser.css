@@ -802,11 +802,6 @@
   padding: 0;
 }
 
-.editing-right {
-  float: right!important;
-  margin: 3px 0 0 10px!important;
-}
-
 .no-editing-available {
   color: #d3d3d3;
   font-size: 15px;
@@ -939,6 +934,10 @@
   animation: progress-bar-stripes 3s linear infinite;
 }
 
+/*
+  Styles for an animated loading spinner.
+*/
+
 @-webkit-keyframes editing-rotation {
   0% {
     -webkit-transform: rotate(0deg);
@@ -978,6 +977,61 @@
     transform: rotate(359deg);
   }
 }
+
+/*
+  Styles for an animated progress bar
+*/
+
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@-moz-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@-ms-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@-o-keyframes progress-bar-stripes {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 40px 0;
+  }
+}
+
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
 
 @media (min-width: 769px) and (max-width: 979px) {
   .editing-mediabrowser {
