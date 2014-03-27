@@ -3,6 +3,9 @@ $ ->
 
   timeout = undefined
 
+  removeTags = (html) ->
+    html.replace(/<\/?[^>]+>/gi, '')
+
   scrival.on 'editing', ->
     onKey = (event) ->
       if timeout
@@ -34,7 +37,7 @@ $ ->
       if timeout
         clearTimeout(timeout)
 
-      content = cmsField.html()
+      content = removeTags(cmsField.html())
       cmsField.scrival('save', content)
 
     $('body').on 'click', '[data-scrival-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
