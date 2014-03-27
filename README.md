@@ -161,25 +161,22 @@ We would be very happy and thankful if you open new issues in order to further i
 Editors. If you want to go a step further and extend the functionality or fix a problem, you can
 do so any time by following the steps below.
 
-1. Signup for a [free Scrival account](http://www.scrival.com/) and setup a test CMS
-   component in the Scrival Dashboard.
-
-2. Fork and clone the
+1. Fork and clone the
    [Scrival Editors GitHub repository](https://github.com/infopark/scrival_editors).
 
         git clone git@github.com:_username_/scrival_editors.git
         cd scrival_editors
 
-3. We suggest using [rbenv](https://github.com/sstephenson/rbenv/) for managing your local Ruby
+2. We suggest using [rbenv](https://github.com/sstephenson/rbenv/) for managing your local Ruby
    version. Make sure to use at least Ruby version 2.0.
 
         ruby --version
 
-4. Create your feature branch and create a pull request for the `develop` branch. Please take a
+3. Create your feature branch and create a pull request for the `develop` branch. Please take a
    look at the already existing generators and rake tasks to get an impression of our coding style
    and the general architecture.
 
-5. We are using the [GitHub Styleguides](https://github.com/styleguide) and would prefer if you
+4. We are using the [GitHub Styleguides](https://github.com/styleguide) and would prefer if you
    could stick to it.
 
 
