@@ -1,3 +1,6 @@
+# v0.0.2
+  * Added placeholder text to empty CMS attributes.
+
 # v0.0.1
   * Updated html editor seperator height from 29px to 27px.
   * Updated the README to describe the new gem.
