@@ -149,6 +149,19 @@ file.
     editing-icon-plus
 
 
+### Placeholder for empty attributes
+
+By default, a placeholder is displayed for empty CMS attributes to notify the user how to edit the
+attribute. The placeholder can be customized by providing a `data-placeholder` HTML attribute.
+
+For example, to change the placeholder to `My custom placeholder text.`, you can adjust the call to
+`cms_tag` in your views like shown below:
+
+```
+cms_tag(:div, @obj, :my_attribute, data: { placeholder: 'My custom placeholder text.' })
+```
+
+
 ## Changelog
 
 See [Changelog](https://github.com/infopark/scrival_editors/blob/master/CHANGELOG.md) for more

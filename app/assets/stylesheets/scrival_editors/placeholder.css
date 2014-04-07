@@ -1,0 +1,17 @@
+/*
+  Placeholder styling for empty CMS attributes. The placeholder text is only displayed, if the
+  element is not focused and it gets a slightly less visible style.
+*/
+[data-scrival-display-mode="editing"] [data-scrival-field-type]:empty:not(:focus):before {
+  content: attr(data-placeholder);
+  color: #ccc;
+  display: block;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 28px;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  vertical-align: middle;
+}
