@@ -5,19 +5,30 @@
 [data-scrival-field-type=referencelist] ul {
   list-style: none;
   margin: 0;
+  padding:0;
 }
 
 [data-scrival-field-type=referencelist] ul li {
   background-color: #f8f8f8;
-  margin: 1px 0 1px 0;
-  padding: 10px 0 0 30px;
+  margin: 0 0 10px 0;
+  padding: 10px 10px 0 10px;
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,.2);
+  box-shadow: 0 0 5px rgba(0,0,0,.2);
 }
 
-[data-scrival-field-type=referencelist] ul li.ui-sortable-helper {
-  border: 1px dotted #000;
+[data-scrival-field-type=referencelist] ul li.ui-sortable-helper {}
+
+[data-scrival-field-type=referencelist] ul li.ui-sortable-placeholder {
+  background:#fff; opacity:.5;
+  visibility:visible!important;
 }
 
 [data-scrival-field-type=referencelist] ul li:hover {
-  background-color: #e1e9f5;
+  background-color: #f6f6f6;
   cursor: move;
 }

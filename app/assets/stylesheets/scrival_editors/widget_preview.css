@@ -1,0 +1,38 @@
+.editing-dialog-thumbnail .icon {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: #666;
+  display: block;
+  font-family: 'editing_iconsregular';
+  font-size: 65px;
+  font-style: normal;
+  line-height: 125px;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.editing-dialog-thumbnail .visualization {
+  height: 120px;
+  line-height: 118px;
+  text-align: center;
+}
+
+.editing-dialog-thumbnail .title {
+  background: #eee;
+  color: #666;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+}
+
+.editing-dialog-thumbnail .description {
+  color: #777;
+  font-size: 11px;
+  padding: 5px;
+}
