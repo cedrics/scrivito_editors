@@ -162,6 +162,17 @@ cms_tag(:div, @obj, :my_attribute, data: { placeholder: 'My custom placeholder t
 ```
 
 
+## Reload after saving a string
+
+The string editor provides an option to enable a reload event that will reload the
+widget, modal dialog or page after successfully saving the changes. By default, the reload event is
+not triggered. To enable it use the `data-reload` HTML attribute, like in the following example:
+
+```
+cms_tag(:div, @obj, :my_string_attribute, data: { reload: true })
+```
+
+
 ## Changelog
 
 See [Changelog](https://github.com/infopark/scrival_editors/blob/master/CHANGELOG.md) for more

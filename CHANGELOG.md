@@ -1,3 +1,7 @@
+# v0.0.3
+  * Added option `data-reload` to the string editor to configure if a reload event should
+    be triggered or not after saving the changes. (Thanks @apepper)
+
 # v0.0.2
   * Added placeholder text to empty CMS attributes.
 
