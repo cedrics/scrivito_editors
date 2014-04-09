@@ -30,8 +30,11 @@ $ ->
 
     onBlur = (event) ->
       cmsField = $(event.currentTarget)
+      reload = cmsField.attr('data-reload') || 'false'
+
       save(cmsField).done ->
-        cmsField.trigger('scrival_reload')
+        if (reload == 'true')
+          cmsField.trigger('scrival_reload')
 
     save = (cmsField) ->
       if timeout

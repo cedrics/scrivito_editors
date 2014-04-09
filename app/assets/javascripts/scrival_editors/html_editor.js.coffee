@@ -35,7 +35,6 @@ $ ->
         '|', 'bold', 'italic', 'deleted', 'underline',
         '|', 'unorderedlist', 'orderedlist',
         '|', 'table', 'link',
-        '|', 'fontcolor', 'backcolor',
         '|', 'html'
       ]
 
@@ -46,14 +45,6 @@ $ ->
       # With this option turned on, Redactor will automatically replace divs to paragraphs.
       # http://imperavi.com/redactor/docs/settings/#set-convertDivs
       convertDivs: false
-
-      # This setting turns on email tab in link modal window.
-      # http://imperavi.com/redactor/docs/settings/#set-linkEmail
-      linkEmail: true
-
-      # This setting allows to turn on and off removing of empty tags.
-      # http://imperavi.com/redactor/docs/settings/#set-removeEmptyTags
-      removeEmptyTags: false
 
       # This callback is triggered after Redactor is launched.
       # http://imperavi.com/redactor/docs/callbacks/#callback-initCallback
@@ -68,7 +59,6 @@ $ ->
       # This callback is triggered when Redactor loses focus.
       # http://imperavi.com/redactor/docs/callbacks/#callback-blurCallback
       blurCallback: ->
-        @.getBox().addClass('saving')
         saveContents(@).done =>
           @.destroy()
 
@@ -105,15 +95,15 @@ $ ->
   redoAction = ->
     @execCommand('redo')
 
-  # Saves the current editor content to the CMS if it has changed and indicates the saving process.
+  # Saves the current editor content to the CMS if it has changed.
   saveContents = (editor) ->
     content = editor.get()
 
     if savedContent != content
-      editor.$element.scrival('save', content).done ->
+      cmsField = editor.$element
+      cmsField.scrival('save', content).done ->
         savedContent = content
-      .fail ->
-        editor.getBox().removeClass('saving')
+        cmsField.trigger('scrival_reload')
 
     else
       $.Deferred().resolve()
@@ -134,6 +124,7 @@ $ ->
       unless cmsField.hasClass('redactor_editor')
         cmsField.html(cmsField.scrival('content') || '')
         cmsField.redactor(redactorOptions())
+        cmsField.redactor('focus')
 
   # Registers all handlers when inplace editing is activated.
   scrival.on 'editing', ->

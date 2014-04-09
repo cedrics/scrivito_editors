@@ -4,7 +4,7 @@
 */
 [data-scrival-display-mode="editing"] [data-scrival-field-type]:empty:not(:focus):before {
   content: attr(data-placeholder);
-  color: #ccc;
+  color: #999;
   display: block;
   font-size: 13px;
   font-style: normal;
