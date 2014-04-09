@@ -19,7 +19,7 @@ module ScrivalEditors
       }
 
       content = begin
-        render_to_string(@obj.mediabrowser_edit_view_path, options)
+        render_to_string(@obj.mediabrowser_details_view_path, options)
       rescue ActionView::MissingTemplate
         render_to_string('scrival_editors/obj/edit', options)
       end
