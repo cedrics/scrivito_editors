@@ -67,12 +67,25 @@ $ ->
   getAttributes = (cmsField) ->
     items = $(cmsField).find('li')
 
-    value =
+    attributes =
       for item in items
         item = $(item)
+        title = item.find('[name=title]').val()
+        url = item.find('[name=url]').val()
 
-        'title': item.find('[name=title]').val()
-        'url': item.find('[name=url]').val()
+        # Make sure the url is not empty.
+        if !isEmpty(url)
+          'title': title
+          'url': url
+
+    # Remove empty array elements.
+    removeEmptyElements(attributes)
+
+  isEmpty = (value) ->
+    !value
+
+  removeEmptyElements = (array) ->
+    $.grep(array, (n) -> n)
 
   # Adds a new link to the linklist.
   addLink = (event) ->
