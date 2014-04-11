@@ -384,8 +384,7 @@
   border-radius: 15px;
   background: #444;
   color: #fff;
-  display: block;
-  float:right;
+  display: inline-block;
   font-size: 10px;
   font-weight: bold;
   line-height: 11px;
