@@ -1,18 +1,16 @@
 $ ->
-  # This file integrates a simple text input field to edit string attributes.
+  # This file integrates contenteditable for string attributes.
 
   timeout = undefined
 
-  removeTags = (html) ->
-    html.replace(/<\/?[^>]+>/gi, '')
-
   scrival.on 'editing', ->
+    cmsField = undefined
+
     onKey = (event) ->
       if timeout
         clearTimeout(timeout)
 
       key = event.keyCode || event.which
-      cmsField = $(event.currentTarget)
 
       switch key
         when 13 # Enter
@@ -25,33 +23,35 @@ $ ->
             .trigger('scrival_reload')
         else
           timeout = setTimeout ( ->
-            save(cmsField)
+            save()
           ), 3000
 
     onBlur = (event) ->
-      cmsField = $(event.currentTarget)
+      cmsField.find('br').replaceWith('\n')
       reload = cmsField.attr('data-reload') || 'false'
 
-      save(cmsField).done ->
+      save().done ->
         if (reload == 'true')
           cmsField.trigger('scrival_reload')
 
-    save = (cmsField) ->
+    save = () ->
       if timeout
         clearTimeout(timeout)
 
-      content = removeTags(cmsField.html())
+      clone = cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit')).clone()
+      clone.find('br').replaceWith('\n')
+      content = clone.text()
+      clone.remove()
       cmsField.scrival('save', content)
 
-    $('body').on 'click', '[data-scrival-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
-      cmsField = $(event.currentTarget)
+    $('body').on 'mouseenter', '[data-scrival-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
+      field = $(event.currentTarget)
 
-      unless cmsField.attr('contenteditable')?
-        event.preventDefault()
-
-        cmsField
+      unless field.attr('contenteditable')?
+        field
+          .data('siblings_before_edit', field.siblings())
           .attr('contenteditable', true)
           .keypress(onKey)
           .keyup(onKey)
           .blur(onBlur)
-          .focus()
+        cmsField = field

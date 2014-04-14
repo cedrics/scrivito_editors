@@ -1,83 +1,59 @@
 $ ->
-  # This file integrates a simple text input field to edit string attributes.
+  # This file integrates contenteditable for text attributes.
+  # It provides multiline editing support.
 
   timeout = undefined
 
   scrival.on 'editing', ->
-    template = ->
-      editor = $('<div></div>')
-        .addClass('text-editor')
+    cmsField = undefined
 
-      input = $('<textarea />')
-        .attr('rows', '6')
-        .appendTo(editor)
-
-      editor
-
-    getBox = (element) ->
-      element.closest('.text-editor')
-
-    editMarker = (cmsField) ->
-      cmsField.closest('[data-scrival-private-widget-obj-class]').find('.scrival_editing_marker')
-
-    disableEditMode = (box) ->
-      cmsField = box.data('cmsField')
-
-      cmsField.show()
-      editMarker(cmsField).show()
-      box.remove()
-
-    keyUp = (event) ->
-      event.stopPropagation()
-      key = event.keyCode || event.which
-
+    onKey = (event) ->
       if timeout
         clearTimeout(timeout)
+
+      key = event.keyCode || event.which
 
       switch key
         when 27 # Esc
-          cancel(event)
+          event.stopPropagation()
+          cmsField
+            .off('blur')
+            .trigger('scrival_reload')
         else
           timeout = setTimeout ( ->
-            save(event)
+            save()
           ), 3000
 
-    save = (event, closeInput = false) ->
-      inputField = $(event.currentTarget)
-      content = inputField.val()
-      box = getBox(inputField)
-      cmsField = box.data('cmsField')
+    onBlur = (event) ->
+      cmsField.find('br').replaceWith('\n')
+      reload = cmsField.attr('data-reload') || 'false'
 
+      save().done ->
+        if (reload == 'true')
+          cmsField.trigger('scrival_reload')
+
+    save = () ->
       if timeout
         clearTimeout(timeout)
 
-      cmsField.scrival('save', content).done ->
-        if closeInput
-          cmsField.html(content)
-          disableEditMode(box)
+      clone = cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit')).clone()
+      clone.find('br').replaceWith('\n')
+      content = clone.text()
+      clone.remove()
+      cmsField.scrival('save', content)
 
-    cancel = (event) ->
-      box = getBox($(event.currentTarget))
+    $('body').on 'mouseenter', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
+      field = $(event.currentTarget)
 
-      disableEditMode(box)
+      html = field.html()
+      html_nl2br = html.replace(/\n/g, '<br />')
+      field.html(html_nl2br) if html != html_nl2br
 
-    onBlur = (event) ->
-      save(event, true)
-
-    $('body').on 'click', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
-      event.preventDefault()
-      event.stopPropagation()
-
-      cmsField = $(this)
-
-      template()
-        .data('cmsField', cmsField)
-        .insertAfter(cmsField)
-        .find('textarea')
-        .val(cmsField.scrival('content') || '')
-        .focusout(onBlur)
-        .keyup(keyUp)
-        .focus()
-
-      cmsField.hide()
-      editMarker(cmsField).hide()
+      unless field.attr('contenteditable')?
+        field
+          .data('siblings_before_edit', field.siblings())
+          .attr('contenteditable', true)
+          .keypress(onKey)
+          .keyup(onKey)
+          .blur(onBlur)
+        cmsField = field
