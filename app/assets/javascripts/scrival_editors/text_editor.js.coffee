@@ -2,45 +2,60 @@ $ ->
   # This file integrates contenteditable for text attributes.
   # It provides multiline editing support.
 
-  timeout = undefined
-
   scrival.on 'editing', ->
     cmsField = undefined
+    timeout = undefined
 
     onKey = (event) ->
-      if timeout
+      if timeout?
         clearTimeout(timeout)
 
-      key = event.keyCode || event.which
+      if cmsField?
+        key = event.keyCode || event.which
 
-      switch key
-        when 27 # Esc
-          event.stopPropagation()
-          cmsField
-            .off('blur')
-            .trigger('scrival_reload')
-        else
-          timeout = setTimeout ( ->
-            save()
-          ), 3000
+        switch key
+          when 27 # Esc
+            if event.type == 'keyup'
+              event.stopPropagation()
+              cmsField
+                .off('blur')
+                .trigger('scrival_reload')
+              cmsField = undefined
+          else
+            setTimeout(cleanUp)
+            timeout = setTimeout ( ->
+              save(false)
+            ), 3000
 
     onBlur = (event) ->
-      cmsField.find('br').replaceWith('\n')
-      reload = cmsField.attr('data-reload') || 'false'
+      if cmsField?
+        field = cmsField
 
-      save().done ->
-        if (reload == 'true')
-          cmsField.trigger('scrival_reload')
+        save(true).done ->
+          if field.attr('data-reload') == 'true'
+            field.trigger('scrival_reload')
 
-    save = () ->
-      if timeout
+    save = (andClose) ->
+      if timeout?
         clearTimeout(timeout)
 
+      cleanUp()
       clone = cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit')).clone()
       clone.find('br').replaceWith('\n')
       content = clone.text()
       clone.remove()
-      cmsField.scrival('save', content)
+      field = cmsField
+      if andClose
+        cmsField.text(content)
+        cmsField = undefined
+      field.scrival('save', content)
+
+    cleanUp = () ->
+      siblings = cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
+      pasted = siblings.not(cmsField)
+      if pasted.length > 0
+        pasted.remove()
+        cmsField.text(siblings.text())
 
     $('body').on 'mouseenter', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
       field = $(event.currentTarget)
@@ -53,7 +68,12 @@ $ ->
         field
           .data('siblings_before_edit', field.siblings())
           .attr('contenteditable', true)
+          .blur(onBlur)
           .keypress(onKey)
           .keyup(onKey)
-          .blur(onBlur)
-        cmsField = field
+
+    $('body').on 'click', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
+      event.preventDefault()
+
+      unless cmsField?
+        cmsField = $(event.currentTarget)
