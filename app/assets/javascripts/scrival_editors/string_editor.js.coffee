@@ -32,7 +32,6 @@ $ ->
 
     onBlur = (event) ->
       if cmsField?
-        document.title += "B"
         field = cmsField
 
         save(true).done ->
