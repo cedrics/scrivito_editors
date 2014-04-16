@@ -43,7 +43,7 @@ $ ->
         clearTimeout(timeout)
 
       cleanUp()
-      clone = cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit')).clone()
+      clone = cmsFieldAndPastedContent().clone()
       clone.find('br').replaceWith('\n')
       content = clone.text()
       clone.remove()
@@ -54,11 +54,14 @@ $ ->
       field.scrival('save', content)
 
     cleanUp = () ->
-      siblings = cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
+      siblings = cmsFieldAndPastedContent()
       pasted = siblings.not(cmsField)
       if pasted.length > 0
         pasted.remove()
         cmsField.text(siblings.text())
+
+    cmsFieldAndPastedContent = () ->
+      cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
 
     $('body').on 'mouseenter', '[data-scrival-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
       field = $(event.currentTarget)
