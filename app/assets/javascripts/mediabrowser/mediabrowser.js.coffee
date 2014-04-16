@@ -223,7 +223,7 @@
 
         if next?
           start = index + objects.length
-          @_renderItems(next, startIndex)
+          @_renderItems(next, start)
 
   _replacePlaceholder: (objects, startIndex) ->
     $(objects).each (index, object) =>

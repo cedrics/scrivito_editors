@@ -19,12 +19,18 @@ module ScrivalEditors
       }
 
       content = begin
-        render_to_string(@obj.mediabrowser_details_view_path, options)
+        render_to_string(details_view_template(@obj), options)
       rescue ActionView::MissingTemplate
         render_to_string('scrival_editors/obj/edit', options)
       end
 
       render json: { content: content }
+    end
+
+    private
+
+    def details_view_template(obj)
+      "#{obj.obj_class.underscore}/details"
     end
   end
 end
