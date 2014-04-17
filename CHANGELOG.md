@@ -1,3 +1,18 @@
+# v0.0.6
+  * Bugfix: Using renamed `obj_class_name` method from the new Scrival SDK instead of `obj_class`.
+  * Changed the behavior when an item is clicked in the mediabrowser. Instead of opening the
+    inspector, the item is now selected or deselected. A small magnifying glass in the upper right
+    corner of the thumbnail now allows to open the inspector for the item.
+  * Rename the fallback inspector view to `details.html`, to be consistent to the new Scrival SDK.
+
+# v0.0.5
+  * The template used in the inspector is no longer configurable and always corresponds to the
+    details view used by the Scrival SDK.
+  * Bugfix: The mediabrowser did not use a correct start index to render multiple thumbnails.
+
+# v0.0.4
+  * Bugfix: Mediabrowser buttons now also work in Chrome browser.
+
 # v0.0.3
   * Updated redactor to version 9.2.1 and removed all custom settings.
   * Added option `data-reload` to the string editor to configure if a reload event should
