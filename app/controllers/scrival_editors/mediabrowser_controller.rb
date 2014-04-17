@@ -30,7 +30,7 @@ module ScrivalEditors
     private
 
     def details_view_template(obj)
-      "#{obj.obj_class.underscore}/details"
+      "#{obj.obj_class_name.underscore}/details"
     end
   end
 end
