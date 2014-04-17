@@ -5,27 +5,15 @@
 [data-scrival-field-type=linklist] ul {
   list-style: none;
   margin: 0;
-  padding:0;
-}
-
-[data-scrival-field-type=linklist] ul li {
-  background-color: #f8f8f8;
-  margin: 0 0 10px 0;
-  padding: 10px 10px 0 10px;
-  background: #fff;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.2);
-  -moz-box-shadow: 0 0 5px rgba(0,0,0,.2);
-  box-shadow: 0 0 5px rgba(0,0,0,.2);
+  padding: 0;
 }
 
 [data-scrival-field-type=linklist] ul li.ui-sortable-helper {}
 
 [data-scrival-field-type=linklist] ul li.ui-sortable-placeholder {
-  background:#fff; opacity:.5;
-  visibility:visible!important;
+  background: #ccc;
+  opacity:.5;
+  visibility: visible!important;
 }
 
 [data-scrival-field-type=linklist] ul li:hover {
@@ -43,8 +31,7 @@
   display: block;
   font-size: 14px;
   height: 34px;
-  margin:0 0 5px 0;
+  margin: 0 0 5px 0;
   padding: 6px 12px;
-  width:100%;
-
+  width: 100%;
 }
