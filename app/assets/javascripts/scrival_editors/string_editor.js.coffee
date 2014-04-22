@@ -1,57 +1,81 @@
 $ ->
-  # This file integrates a simple text input field to edit string attributes.
-
-  timeout = undefined
-
-  removeTags = (html) ->
-    html.replace(/<\/?[^>]+>/gi, '')
+  # This file integrates contenteditable for string attributes.
 
   scrival.on 'editing', ->
+
+    cmsField = undefined
+    timeout = undefined
+
     onKey = (event) ->
-      if timeout
+      if timeout?
         clearTimeout(timeout)
 
-      key = event.keyCode || event.which
-      cmsField = $(event.currentTarget)
+      if cmsField?
+        key = event.keyCode || event.which
 
-      switch key
-        when 13 # Enter
-          event.preventDefault()
-          cmsField.blur()
-        when 27 # Esc
-          event.stopPropagation()
-          cmsField
-            .off('blur')
-            .trigger('scrival_reload')
-        else
-          timeout = setTimeout ( ->
-            save(cmsField)
-          ), 3000
+        switch key
+          when 13 # Enter
+            event.preventDefault()
+            cmsField.blur()
+          when 27 # Esc
+            if event.type == 'keyup'
+              event.stopPropagation()
+              cmsField
+                .off('blur')
+                .trigger('scrival_reload')
+              cmsField = undefined
+          else
+            setTimeout(cleanUp)
+            timeout = setTimeout ( ->
+              save(false)
+            ), 3000
 
     onBlur = (event) ->
-      cmsField = $(event.currentTarget)
-      reload = cmsField.attr('data-reload') || 'false'
+      if cmsField?
+        field = cmsField
 
-      save(cmsField).done ->
-        if (reload == 'true')
-          cmsField.trigger('scrival_reload')
+        save(true).done ->
+          if field.attr('data-reload') == 'true'
+            field.trigger('scrival_reload')
 
-    save = (cmsField) ->
-      if timeout
+    save = (andClose) ->
+      if timeout?
         clearTimeout(timeout)
 
-      content = removeTags(cmsField.html())
-      cmsField.scrival('save', content)
+      cleanUp()
+      clone = cmsFieldAndPastedContent().clone()
+      clone.find('br').replaceWith('\n')
+      content = clone.text()
+      clone.remove()
+      field = cmsField
+      if andClose
+        cmsField.text(content)
+        cmsField = undefined
+      field.scrival('save', content)
 
-    $('body').on 'click', '[data-scrival-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
-      cmsField = $(event.currentTarget)
+    cleanUp = () ->
+      siblings = cmsFieldAndPastedContent()
+      pasted = siblings.not(cmsField)
+      if pasted.length > 0
+        pasted.remove()
+        cmsField.text(siblings.text())
 
-      unless cmsField.attr('contenteditable')?
-        event.preventDefault()
+    cmsFieldAndPastedContent = () ->
+      cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
 
-        cmsField
+    $('body').on 'mouseenter', '[data-scrival-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
+      field = $(event.currentTarget)
+
+      unless field.attr('contenteditable')?
+        field
+          .data('siblings_before_edit', field.siblings())
           .attr('contenteditable', true)
+          .blur(onBlur)
           .keypress(onKey)
           .keyup(onKey)
-          .blur(onBlur)
-          .focus()
+
+    $('body').on 'click', '[data-scrival-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
+      event.preventDefault()
+
+      unless cmsField?
+        cmsField = $(event.currentTarget)
