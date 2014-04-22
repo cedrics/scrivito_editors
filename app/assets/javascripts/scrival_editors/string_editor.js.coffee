@@ -2,7 +2,6 @@ $ ->
   # This file integrates contenteditable for string attributes.
 
   scrival.on 'editing', ->
-
     cmsField = undefined
     timeout = undefined
 
@@ -43,24 +42,28 @@ $ ->
         clearTimeout(timeout)
 
       cleanUp()
+
       clone = cmsFieldAndPastedContent().clone()
       clone.find('br').replaceWith('\n')
       content = clone.text()
       clone.remove()
+
       field = cmsField
+
       if andClose
         cmsField.text(content)
         cmsField = undefined
+
       field.scrival('save', content)
 
-    cleanUp = () ->
+    cleanUp = ->
       siblings = cmsFieldAndPastedContent()
       pasted = siblings.not(cmsField)
       if pasted.length > 0
         pasted.remove()
         cmsField.text(siblings.text())
 
-    cmsFieldAndPastedContent = () ->
+    cmsFieldAndPastedContent = ->
       cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
 
     $('body').on 'mouseenter', '[data-scrival-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->

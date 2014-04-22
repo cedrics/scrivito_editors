@@ -1,4 +1,7 @@
 # v0.0.6
+  * Rewrite of string and text editor to better support pasting HTML, correctly handling quotes,
+    inserting the carrot at the correct position and better multiline support for preformatted text
+    fields. (Thanks @dcsaszar)
   * Bugfix: Using renamed `obj_class_name` method from the new Scrival SDK instead of `obj_class`.
   * Changed the behavior when an item is clicked in the mediabrowser. Instead of opening the
     inspector, the item is now selected or deselected. A small magnifying glass in the upper right
