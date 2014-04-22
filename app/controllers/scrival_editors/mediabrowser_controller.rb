@@ -9,8 +9,8 @@ module ScrivalEditors
     end
 
     # Render a JSON response that holds the mediabrowser inspector markup. The inspector either
-    # renders the edit view for the selected object, or a fallback edit view that is located under
-    # 'app/views/obj/edit'.
+    # renders the details view for the selected object, or a fallback view that is located under
+    # 'app/views/obj/details'.
     def inspector
       @obj = Obj.find(params[:id])
 
@@ -21,7 +21,7 @@ module ScrivalEditors
       content = begin
         render_to_string(details_view_template(@obj), options)
       rescue ActionView::MissingTemplate
-        render_to_string('scrival_editors/obj/edit', options)
+        render_to_string('scrival_editors/obj/details', options)
       end
 
       render json: { content: content }
@@ -30,7 +30,7 @@ module ScrivalEditors
     private
 
     def details_view_template(obj)
-      "#{obj.obj_class.underscore}/details"
+      "#{obj.obj_class_name.underscore}/details"
     end
   end
 end

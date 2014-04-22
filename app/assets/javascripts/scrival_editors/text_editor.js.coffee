@@ -1,83 +1,86 @@
 $ ->
-  # This file integrates a simple text input field to edit string attributes.
-
-  timeout = undefined
+  # This file integrates contenteditable for text attributes.
+  # It provides multiline editing support.
 
   scrival.on 'editing', ->
-    template = ->
-      editor = $('<div></div>')
-        .addClass('text-editor')
+    cmsField = undefined
+    timeout = undefined
 
-      input = $('<textarea />')
-        .attr('rows', '6')
-        .appendTo(editor)
-
-      editor
-
-    getBox = (element) ->
-      element.closest('.text-editor')
-
-    editMarker = (cmsField) ->
-      cmsField.closest('[data-scrival-private-widget-obj-class]').find('.scrival_editing_marker')
-
-    disableEditMode = (box) ->
-      cmsField = box.data('cmsField')
-
-      cmsField.show()
-      editMarker(cmsField).show()
-      box.remove()
-
-    keyUp = (event) ->
-      event.stopPropagation()
-      key = event.keyCode || event.which
-
-      if timeout
+    onKey = (event) ->
+      if timeout?
         clearTimeout(timeout)
 
-      switch key
-        when 27 # Esc
-          cancel(event)
-        else
-          timeout = setTimeout ( ->
-            save(event)
-          ), 3000
+      if cmsField?
+        key = event.keyCode || event.which
 
-    save = (event, closeInput = false) ->
-      inputField = $(event.currentTarget)
-      content = inputField.val()
-      box = getBox(inputField)
-      cmsField = box.data('cmsField')
-
-      if timeout
-        clearTimeout(timeout)
-
-      cmsField.scrival('save', content).done ->
-        if closeInput
-          cmsField.html(content)
-          disableEditMode(box)
-
-    cancel = (event) ->
-      box = getBox($(event.currentTarget))
-
-      disableEditMode(box)
+        switch key
+          when 27 # Esc
+            if event.type == 'keyup'
+              event.stopPropagation()
+              cmsField
+                .off('blur')
+                .trigger('scrival_reload')
+              cmsField = undefined
+          else
+            setTimeout(cleanUp)
+            timeout = setTimeout ( ->
+              save(false)
+            ), 3000
 
     onBlur = (event) ->
-      save(event, true)
+      if cmsField?
+        field = cmsField
+
+        save(true).done ->
+          if field.attr('data-reload') == 'true'
+            field.trigger('scrival_reload')
+
+    save = (andClose) ->
+      if timeout?
+        clearTimeout(timeout)
+
+      cleanUp()
+
+      clone = cmsFieldAndPastedContent().clone()
+      clone.find('br').replaceWith('\n')
+      content = clone.text()
+      clone.remove()
+
+      field = cmsField
+
+      if andClose
+        cmsField.text(content)
+        cmsField = undefined
+
+      field.scrival('save', content)
+
+    cleanUp = ->
+      siblings = cmsFieldAndPastedContent()
+      pasted = siblings.not(cmsField)
+      if pasted.length > 0
+        pasted.remove()
+        cmsField.text(siblings.text())
+
+    cmsFieldAndPastedContent = ->
+      cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
+
+    $('body').on 'mouseenter', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
+      field = $(event.currentTarget)
+
+      html = field.html()
+      html_nl2br = html.replace(/\n/g, '<br />')
+      field.html(html_nl2br) if html != html_nl2br
+
+      unless field.attr('contenteditable')?
+        field
+          .data('siblings_before_edit', field.siblings())
+          .attr('contenteditable', true)
+          .blur(onBlur)
+          .keypress(onKey)
+          .keyup(onKey)
 
     $('body').on 'click', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
       event.preventDefault()
-      event.stopPropagation()
 
-      cmsField = $(this)
-
-      template()
-        .data('cmsField', cmsField)
-        .insertAfter(cmsField)
-        .find('textarea')
-        .val(cmsField.scrival('content') || '')
-        .focusout(onBlur)
-        .keyup(keyUp)
-        .focus()
-
-      cmsField.hide()
-      editMarker(cmsField).hide()
+      unless cmsField?
+        cmsField = $(event.currentTarget)

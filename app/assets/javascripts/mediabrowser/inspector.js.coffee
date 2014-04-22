@@ -12,7 +12,7 @@
     @inspector.hide()
 
   _onInspect: (event) ->
-    unless $(event.target).hasClass('select-item')
+    if $(event.target).hasClass('editing-mediabrowser-inspect')
       currentTarget = $(event.currentTarget)
       id = currentTarget.data('id')
 

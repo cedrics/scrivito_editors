@@ -16,12 +16,14 @@ $ ->
       content = ui.value
       cmsField.text(ui.value)
 
-    $('body').on 'click', '[data-editor="slider"]', (event) ->
+    $('body').on 'click', '[data-editor="slider"]:not(.active)', (event) ->
       cmsField = $(event.currentTarget)
       content = cmsField.scrival('content')
       min = cmsField.attr('data-min') || 1
       max = cmsField.attr('data-max') || 10
       step = cmsField.attr('data-step') || 1
+
+      cmsField.addClass('active')
 
       template()
         .data('cmsField', cmsField)

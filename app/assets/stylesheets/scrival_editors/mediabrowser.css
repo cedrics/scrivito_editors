@@ -548,6 +548,33 @@
   white-space: nowrap;
 }
 
+.editing-mediabrowser ul.editing-mediabrowser-thumbnails li .editing-mediabrowser-inspect:before {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background: #7EA46A;
+  top: 0;
+  color: #fff;
+  content: '\F043';
+  display: block;
+  font-family: 'editing_iconsregular';
+  font-style: normal;
+  font-weight: normal;
+  height: 40px;
+  line-height: 42px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  width: 40px;
+  font-size: 11px;
+}
+
 .editing-mediabrowser ul.editing-mediabrowser-thumbnails li .editing-mediabrowser-thumbnails-select:before {
   -webkit-user-select: none;
   -moz-user-select: none;

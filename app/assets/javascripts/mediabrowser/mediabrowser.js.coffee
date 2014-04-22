@@ -132,6 +132,12 @@
     $('li.mediabrowser-item').filter ->
       id == $(this).data('id')
 
+  _selectItem: (item) ->
+    if (item.hasClass('active'))
+      @_removeItem(item)
+    else
+      @_addItem(item)
+
   _addItem: (item) ->
     @_activateItem(item)
 
@@ -245,6 +251,10 @@
       .addClass('editing-mediabrowser-preview')
       .appendTo(wrapper)
 
+    inspect = $('<span></span>')
+      .addClass('editing-mediabrowser-inspect')
+      .appendTo(preview)
+
     image = if url?
       $('<img />')
         .attr('src', url)
@@ -297,13 +307,10 @@
       event.preventDefault()
       @_triggerSearch()
 
-    @modal.on 'click', 'li.mediabrowser-item .select-item:not(.active)', (event) =>
-      event.stopImmediatePropagation()
-      @_addItem(event.currentTarget)
-
-    @modal.on 'click', 'li.mediabrowser-item .select-item.active', (event) =>
-      event.stopImmediatePropagation()
-      @_removeItem(event.currentTarget)
+    @modal.on 'click', 'li.mediabrowser-item', (event) =>
+      unless $(event.target).hasClass('editing-mediabrowser-inspect')
+        item = $(event.currentTarget).find('.select-item')
+        @_selectItem(item)
 
     @modal.on 'click', '.mediabrowser-save', (event) =>
       event.preventDefault()
