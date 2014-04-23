@@ -452,6 +452,7 @@
   display: block;
   list-style-type: none;
   margin: 0;
+  overflow: hidden;
   padding: 15px 0 0 15px;
 }
 
