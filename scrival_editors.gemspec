@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version     = Gem::Requirement.new('>= 1.9')
   gem.required_rubygems_version = Gem::Requirement.new('>= 1.8')
 
-  gem.license = 'LGPLv3'
+  gem.license = 'LGPL-3.0'
 
   gem.authors   = ['Scrival']
   gem.email     = ['info@infopark.de']
