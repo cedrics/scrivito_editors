@@ -1,3 +1,7 @@
+# v0.0.7
+  * Bugfix: The default placeholder text for empty CMS attributes only used the name of the first
+    attribute on the page, instead of the correct field name for each CMS attribute.
+
 # v0.0.6
   * Rewrite of string and text editor to better support pasting HTML, correctly handling quotes,
     inserting the carrot at the correct position and better multiline support for preformatted text
