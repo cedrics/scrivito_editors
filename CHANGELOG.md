@@ -1,4 +1,8 @@
 # v0.0.7
+  * Bugfix: The string and text editor now also save correctly, when highlighting and editing the
+    content without triggering a `click` event.
+  * Bugfix: The placeholder now also works for attributes, that have been cleared without triggering
+    a reload of the page afterwards. (Thanks @gertimon)
   * Bugfix: The default placeholder text for empty CMS attributes only used the name of the first
     attribute on the page, instead of the correct field name for each CMS attribute.
 
