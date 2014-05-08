@@ -1,4 +1,6 @@
 # v0.0.7
+  * Mediabrowser: Thumbnails only display an image, if the object defines a `image?` method, that
+    returns `true`, otherwise a generic icon is rendered.
   * Bugfix: The string and text editor now also save correctly, when highlighting and editing the
     content without triggering a `click` event.
   * Bugfix: The placeholder now also works for attributes, that have been cleared without triggering
