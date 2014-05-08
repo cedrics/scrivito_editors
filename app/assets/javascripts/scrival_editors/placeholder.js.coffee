@@ -5,7 +5,7 @@ $ ->
   # For example:
   #   cms_tag(:div, @obj, :my_attribute, data: { placeholder: 'My custom placeholder text.' })
   addPlaceholder = ->
-    cmsFields = $('[data-scrival-field-type]:empty')
+    cmsFields = $('[data-scrival-field-type]')
 
     cmsFields.each ->
       cmsField = $(@)
