@@ -1,4 +1,6 @@
 # v0.0.7
+  * Linklist and referencelist editors now better handle all aspects of the inplace editing process
+    for these two attributes. The "add" button no longer has to be rendered by the application code.
   * Mediabrowser: Thumbnails only display an image, if the object defines a `image?` method, that
     returns `true`, otherwise a generic icon is rendered.
   * Bugfix: The string and text editor now also save correctly, when highlighting and editing the
