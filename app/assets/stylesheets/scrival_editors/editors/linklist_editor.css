@@ -2,26 +2,24 @@
   An editor to handle CMS linklist attributes.
 */
 
-[data-scrival-field-type=linklist] ul {
+[data-scrival-field-type="linklist"] ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-[data-scrival-field-type=linklist] ul li.ui-sortable-helper {}
-
-[data-scrival-field-type=linklist] ul li.ui-sortable-placeholder {
+[data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li.ui-sortable-placeholder {
   background: #ccc;
-  opacity:.5;
+  opacity: .5;
   visibility: visible!important;
 }
 
-[data-scrival-field-type=linklist] ul li:hover {
+[data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li:hover {
   background-color: #f6f6f6;
   cursor: move;
 }
 
-[data-scrival-field-type=linklist] ul li input{
+[data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li input{
   background: #fff;
   border: 1px solid #ccc;
   -webkit-border-radius: 5px;
