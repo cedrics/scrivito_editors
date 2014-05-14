@@ -146,7 +146,9 @@ a.editing-button:active {
   color: #fff;
 }
 
-
+/*
+  Styling for buttons in the details view dialog.
+*/
 
 .details-view [data-scrival-field-type="string"] .editing-button,
 .details-view [data-scrival-field-type="text"] .editing-button,
@@ -154,4 +156,6 @@ a.editing-button:active {
 .details-view [data-scrival-field-type="linklist"] .editing-button,
 .details-view [data-scrival-field-type="referencelist"] .editing-button,
 .details-view [data-scrival-field-type="reference"] .editing-button,
-.details-view [data-scrival-field-type="date"] .editing-button {margin:10px 10px 0 0;}
+.details-view [data-scrival-field-type="date"] .editing-button {
+  margin: 10px 10px 0 0;
+}
