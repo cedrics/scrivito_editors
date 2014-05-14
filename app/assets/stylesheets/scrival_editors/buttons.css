@@ -145,3 +145,13 @@ a.editing-button:active {
 .editing-button.editing-yellow .editing-icon {
   color: #fff;
 }
+
+
+
+.details-view [data-scrival-field-type="string"] .editing-button,
+.details-view [data-scrival-field-type="text"] .editing-button,
+.details-view [data-scrival-field-type="html"] .editing-button,
+.details-view [data-scrival-field-type="linklist"] .editing-button,
+.details-view [data-scrival-field-type="referencelist"] .editing-button,
+.details-view [data-scrival-field-type="reference"] .editing-button,
+.details-view [data-scrival-field-type="date"] .editing-button {margin:10px 10px 0 0;}
