@@ -65,22 +65,17 @@ $ ->
       cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
 
     $('body').on 'mouseenter', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
-      field = $(event.currentTarget)
+      unless cmsField?
+        cmsField = $(event.currentTarget)
 
-      html = field.html()
+      html = cmsField.html()
       html_nl2br = html.replace(/\n/g, '<br />')
-      field.html(html_nl2br) if html != html_nl2br
+      cmsField.html(html_nl2br) if html != html_nl2br
 
-      unless field.attr('contenteditable')?
-        field
-          .data('siblings_before_edit', field.siblings())
+      unless cmsField.attr('contenteditable')?
+        cmsField
+          .data('siblings_before_edit', cmsField.siblings())
           .attr('contenteditable', true)
           .blur(onBlur)
           .keypress(onKey)
           .keyup(onKey)
-
-    $('body').on 'click', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
-      event.preventDefault()
-
-      unless cmsField?
-        cmsField = $(event.currentTarget)

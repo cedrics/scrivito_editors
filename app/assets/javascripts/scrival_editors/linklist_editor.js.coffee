@@ -20,6 +20,19 @@ $ ->
          </a>
        </div>")
 
+  mediabrowserButtonTemplate = ->
+    icon = $('<i></i>')
+      .addClass('editing-icon')
+      .addClass('editing-icon-plus')
+
+    button = $('<button></button>')
+      .addClass('editing-button')
+      .addClass('editing-green')
+      .addClass('add-link')
+      .html(icon)
+
+    button
+
   # Returns the closest linklist DOM element.
   getCmsField = (element) ->
     element.closest('[data-scrival-field-type=linklist]')
@@ -108,6 +121,8 @@ $ ->
 
   # Turns the server side generated linklist data into the linklist editor using a template.
   transformLinks = (cmsFields) ->
+    cmsFields.append(mediabrowserButtonTemplate)
+
     items = cmsFields.find('li')
 
     for item in items

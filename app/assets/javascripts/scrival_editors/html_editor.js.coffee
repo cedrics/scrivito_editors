@@ -61,6 +61,7 @@ $ ->
       blurCallback: ->
         saveContents(@).done =>
           @.destroy()
+          reload(@)
 
       # This callback is triggered when a key is released.
       # http://imperavi.com/redactor/docs/callbacks/#callback-keyupCallback
@@ -103,16 +104,20 @@ $ ->
       cmsField = editor.$element
       cmsField.scrival('save', content).done ->
         savedContent = content
-        cmsField.trigger('scrival_reload')
 
     else
       $.Deferred().resolve()
+
+  reload = (editor) ->
+    cmsField = editor.$element
+    cmsField.trigger('scrival_reload')
 
   # Restores the original content before the editor was opened, also saves it back to the CMS
   # because autosave could have overwritten the content and closes the editor.
   cancelEditing = (editor) ->
     editor.set(originalContent)
-    saveContents(editor)
+    saveContents(editor).done ->
+      reload(editor)
     editor.destroy()
 
   # Registers Redactor for all CMS html attributes found in the given scope of the DOM element.

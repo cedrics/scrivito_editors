@@ -3,18 +3,25 @@ $ ->
 
   # Creates the DOM for one reference element of the referencelist and substitutes the
   # name and id attribute.
-  template = (attributes) ->
-    attributes ||= {}
-
-    name = attributes['name'] || ''
-    id = attributes['id'] || ''
-
-    $("<div>#{name} (#{id})</div>
-       <div class=\"actions\">
+  itemTemplate = ->
+    $("<div class=\"actions\">
          <a href=\"#\" class=\"editing-button editing-red delete\">
            <i class=\"editing-icon editing-icon-trash\" />
          </a>
        </div>")
+
+  mediabrowserButtonTemplate = ->
+    icon = $('<i></i>')
+      .addClass('editing-icon')
+      .addClass('editing-icon-plus')
+
+    button = $('<button></button>')
+      .addClass('editing-button')
+      .addClass('editing-green')
+      .addClass('mediabrowser-open')
+      .html(icon)
+
+    button
 
   # Returns the closest referencelist DOM element.
   getCmsField = (element) ->
@@ -67,16 +74,12 @@ $ ->
 
   # Turns the server side generated referencelist data into the reference editor using a template.
   transform = (elements) ->
+    elements.append(mediabrowserButtonTemplate)
+
     items = elements.find('li')
 
     for item in items
-      item = $(item)
-
-      content = template
-        id: item.data('id')
-        name: item.data('name')
-
-      item.html(content)
+      $(item).append(itemTemplate)
 
   # Returns the last saved value.
   getLastSaved = (cmsField) ->

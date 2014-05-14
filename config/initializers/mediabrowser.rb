@@ -5,7 +5,7 @@ Scrival::Configuration.register_obj_format('mediabrowser') do |obj|
     title: obj.title || obj.name,
   }
 
-  if obj.image?
+  if obj.respond_to?(:image?) && obj.image?
     format[:preview] = obj.body_data_url
   end
 
