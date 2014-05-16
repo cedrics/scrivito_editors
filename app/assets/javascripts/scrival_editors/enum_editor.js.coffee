@@ -4,6 +4,7 @@ $ ->
   scrival.on 'editing', ->
     template = (values) ->
       element = $('<select></select>')
+        .addClass('form-control')
 
       $.each values, (index, value) ->
         $('<option></option>')

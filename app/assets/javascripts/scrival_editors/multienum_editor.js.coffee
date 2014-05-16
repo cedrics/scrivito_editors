@@ -5,6 +5,7 @@ $ ->
     template = (values) ->
       element = $('<select></select>')
         .attr('multiple', 'true')
+        .addClass('form-control')
 
       $.each values, (index, value) ->
         $('<option></option>')
