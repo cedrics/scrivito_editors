@@ -79,3 +79,7 @@ $ ->
           .blur(onBlur)
           .keypress(onKey)
           .keyup(onKey)
+
+    # Prevent editable link text to follow the link target on click.
+    $('body').on 'click', '[data-scrival-field-type="text"]:not([data-editor]), [data-editor="text"]', (event) ->
+      event.preventDefault()
