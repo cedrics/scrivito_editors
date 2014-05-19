@@ -148,8 +148,7 @@ $ ->
 
     save(cmsField)
 
-  # Initialize linklist editor and setup event callbacks.
-  scrival.on 'new_content', (root) ->
+  initialize = (root) ->
     linklistElements = $(root).find('[data-scrival-field-type="linklist"]:not([data-editor]), [data-editor="linklist"]')
 
     if linklistElements.length
@@ -168,3 +167,10 @@ $ ->
           cmsField = getCmsField($(event.target))
 
           save(cmsField)
+
+  # Initialize linklist editor and setup event callbacks.
+  scrival.on 'new_content', (root) ->
+    initialize(root)
+
+  scrival.on 'editing', ->
+    initialize(document)
