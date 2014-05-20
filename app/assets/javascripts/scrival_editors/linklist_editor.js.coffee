@@ -71,7 +71,7 @@ $ ->
 
     true
 
-  # Transforms an obj id into an url that can be parsed by Scrival
+  # Transforms an obj id into an url that can be parsed by Scrivito
   # to establish an internal link.
   buildUrl = (id) ->
     "/#{id}"

@@ -5,16 +5,16 @@ require 'scrivito_editors/version'
 Gem::Specification.new do |gem|
   gem.platform    = Gem::Platform::RUBY
   gem.name        = 'scrivito_editors'
-  gem.version     = ScrivalEditors::VERSION
-  gem.summary     = 'Scrival Editors'
-  gem.description = 'Scrival Editors'
+  gem.version     = ScrivitoEditors::VERSION
+  gem.summary     = 'Scrivito Editors'
+  gem.description = 'Scrivito Editors'
 
   gem.required_ruby_version     = Gem::Requirement.new('>= 1.9')
   gem.required_rubygems_version = Gem::Requirement.new('>= 1.8')
 
   gem.license = 'LGPL-3.0'
 
-  gem.authors   = ['Scrival']
+  gem.authors   = ['Scrivito']
   gem.email     = ['info@infopark.de']
   gem.homepage  = 'http://www.scrivito.com'
 

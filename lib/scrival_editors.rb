@@ -1,4 +1,4 @@
 require 'scrivito_editors/engine'
 
-module ScrivalEditors
+module ScrivitoEditors
 end

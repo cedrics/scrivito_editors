@@ -1,12 +1,12 @@
-# Scrival Editors
+# Scrivito Editors
 
 [![Gem Version](https://badge.fury.io/rb/scrivito_editors.png)](http://badge.fury.io/rb/scrivito_editors)
 [![Code Climate](https://codeclimate.com/github/infopark/scrivito_editors.png)](https://codeclimate.com/github/infopark/scrivito_editors)
 [![Dependency Status](https://gemnasium.com/infopark/scrivito_editors.png)](https://gemnasium.com/infopark/scrivito_editors)
 [![Build Status](https://travis-ci.org/infopark/scrivito_editors.png)](https://travis-ci.org/infopark/scrivito_editors)
 
-The [Scrival](http://scrivito.com) Editors gem is a collection of useful standard
-JavaScript editors based on the Scrival SDK. The editors allow to edit all CMS
+The [Scrivito](http://scrivito.com) Editors gem is a collection of useful standard
+JavaScript editors based on the Scrivito SDK. The editors allow to edit all CMS
 attributes in place and provide helper for the property view of pages and
 widgets. A media browser is also part of the gem, to add, update and delete
 resources.
@@ -25,12 +25,12 @@ details.
 
 ## Contributing
 
-We would be very happy and thankful if you open new issues in order to further improve Scrival
+We would be very happy and thankful if you open new issues in order to further improve Scrivito
 Editors. If you want to go a step further and extend the functionality or fix a problem, you can
 do so any time by following the steps below.
 
 1. Fork and clone the
-   [Scrival Editors GitHub repository](https://github.com/infopark/scrivito_editors).
+   [Scrivito Editors GitHub repository](https://github.com/infopark/scrivito_editors).
 
         git clone git@github.com:_username_/scrivito_editors.git
         cd scrivito_editors

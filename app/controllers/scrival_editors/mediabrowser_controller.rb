@@ -1,4 +1,4 @@
-module ScrivalEditors
+module ScrivitoEditors
   class MediabrowserController < ApplicationController
     # Return JSON responses without layout information.
     layout false
