@@ -2,13 +2,13 @@
   An editor to handle CMS referencelist attributes.
 */
 
-[data-scrival-field-type="referencelist"] ul {
+[data-scrivito-field-type="referencelist"] ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-[data-scrival-field-type="referencelist"] ul li {
+[data-scrivito-field-type="referencelist"] ul li {
   background-color: #f1f1f1;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -19,33 +19,33 @@
   position: relative;
 }
 
-[data-scrival-field-type="referencelist"] ul li:last-child {
+[data-scrivito-field-type="referencelist"] ul li:last-child {
   margin: 0;
 }
 
-[data-scrival-field-type="referencelist"] ul li.ui-sortable-placeholder:before {
+[data-scrivito-field-type="referencelist"] ul li.ui-sortable-placeholder:before {
   display:none;
 }
 
-[data-scrival-field-type="referencelist"] ul li .list-content {
+[data-scrivito-field-type="referencelist"] ul li .list-content {
   float: left;
   width: 70%;
   line-height: 35px;
 }
 
-[data-scrival-field-type="referencelist"] ul li .actions {
+[data-scrivito-field-type="referencelist"] ul li .actions {
   float: right;
 }
 
-[data-scrival-field-type="referencelist"] ul li .actions .editing-button {
+[data-scrivito-field-type="referencelist"] ul li .actions .editing-button {
   margin: 0 0 0 10px;
 }
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="referencelist"] ul li {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="referencelist"] ul li {
   padding: 10px 10px 10px 25px;
 }
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="referencelist"] ul li:before {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="referencelist"] ul li:before {
   content: '||';
   color: #999;
   font-size: 17px;
@@ -54,12 +54,12 @@
   top: 25%;
 }
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="referencelist"] ul li:hover {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="referencelist"] ul li:hover {
   background-color: #e6f3f7;
   cursor: move;
 }
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="referencelist"] ul li.ui-sortable-placeholder {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="referencelist"] ul li.ui-sortable-placeholder {
   background: #f3f3f3;
   border: 2px dashed #9bc2cf;
   opacity: .5;

@@ -1,7 +1,7 @@
 $ ->
   # Define editor behavior for date attributes.
 
-  scrival.on 'editing', ->
+  scrivito.on 'editing', ->
     template = ->
       $('<input />')
         .attr('type', 'text')
@@ -21,11 +21,11 @@ $ ->
       if dateTimeText? && dateTimeText.length > 0
         dateTimeText = new Date(dateTimeText)
 
-      cmsField.scrival('save', dateTimeText)
+      cmsField.scrivito('save', dateTimeText)
         .done ->
-          cmsField.trigger('scrival_reload')
+          cmsField.trigger('scrivito_reload')
 
-    $('body').on 'click', '[data-scrival-field-type="date"]:not(.hasDatepicker):not([data-editor]), [data-editor="date"]', (event) ->
+    $('body').on 'click', '[data-scrivito-field-type="date"]:not(.hasDatepicker):not([data-editor]), [data-editor="date"]', (event) ->
       event.preventDefault()
 
       cmsField = $(this)

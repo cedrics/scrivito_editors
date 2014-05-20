@@ -2,13 +2,13 @@
   An editor to handle CMS linklist attributes.
 */
 
-[data-scrival-field-type="linklist"] ul {
+[data-scrivito-field-type="linklist"] ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-[data-scrival-field-type="linklist"] ul li{
+[data-scrivito-field-type="linklist"] ul li{
   background-color: #f1f1f1;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -19,40 +19,40 @@
   position: relative;
 }
 
-[data-scrival-field-type="linklist"] ul li:last-child {
+[data-scrivito-field-type="linklist"] ul li:last-child {
   margin: 0;
 }
 
-[data-scrival-field-type="linklist"] ul li.ui-sortable-placeholder:before {
+[data-scrivito-field-type="linklist"] ul li.ui-sortable-placeholder:before {
   display:none;
 }
 
-[data-scrival-field-type="linklist"] ul li .list-content {
+[data-scrivito-field-type="linklist"] ul li .list-content {
   float: left;
   line-height: 35px;
   width: 70%;
 }
 
-[data-scrival-field-type="linklist"] ul li .list-content a {
+[data-scrivito-field-type="linklist"] ul li .list-content a {
   display:block;
 }
 
-[data-scrival-field-type="linklist"] ul li .actions {
+[data-scrivito-field-type="linklist"] ul li .actions {
   position: absolute;
   top: 11px;
   right: 11px;
 }
 
-[data-scrival-field-type="linklist"] ul li .actions .editing-button {
+[data-scrivito-field-type="linklist"] ul li .actions .editing-button {
   margin: 0 0 0 10px;
 }
 
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="linklist"] ul li {
   padding: 10px 135px 10px 25px;
 }
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li:before {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="linklist"] ul li:before {
   color: #999;
   content: '||';
   font-size: 17px;
@@ -61,19 +61,19 @@
   top: 35%;
 }
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li:hover {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="linklist"] ul li:hover {
   background-color: #e6f3f7;
   cursor: move;
 }
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li.ui-sortable-placeholder {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="linklist"] ul li.ui-sortable-placeholder {
   background: #f3f3f3;
   border: 2px dashed #9bc2cf;
   opacity: .5;
   visibility: visible!important;
 }
 
-[data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li input {
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="linklist"] ul li input {
   background: #fff;
   border: 1px solid #ddd;
   -webkit-border-radius: 5px;
@@ -90,16 +90,16 @@
 }
 
 @media (max-width: 1100px) {
-  [data-scrival-display-mode="editing"] [data-scrival-field-type="linklist"] ul li {
+  [data-scrivito-display-mode="editing"] [data-scrivito-field-type="linklist"] ul li {
     padding: 10px 10px 10px 25px;
   }
 
-  [data-scrival-field-type="linklist"] ul li .actions {
+  [data-scrivito-field-type="linklist"] ul li .actions {
     float: left;
     position: static;
   }
 
-  [data-scrival-field-type="linklist"] ul li .actions .editing-button {
+  [data-scrivito-field-type="linklist"] ul li .actions .editing-button {
     margin: 0 10px 0 0;
   }
 }

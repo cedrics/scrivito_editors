@@ -114,7 +114,7 @@
     objName = file.name.replace(/[^a-z0-9_.$\-]/ig, '-')
     path = "_resources/#{@_randomResourceId()}/#{objName}"
 
-    scrival.create_obj
+    scrivito.create_obj
       blob: file
       _path: path
       _obj_class: @_objClassForMimeType(file.type)

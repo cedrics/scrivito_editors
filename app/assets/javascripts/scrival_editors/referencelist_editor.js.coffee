@@ -25,17 +25,17 @@ $ ->
 
   # Returns the closest referencelist DOM element.
   getCmsField = (element) ->
-    element.closest('[data-scrival-field-type=referencelist]')
+    element.closest('[data-scrivito-field-type=referencelist]')
 
   # Saves the referencelist to the CMS when changed and stores the last successfully saved value.
   save = (ids, cmsField) ->
     lastSaved = getLastSaved(cmsField)
 
     unless JSON.stringify(ids) == JSON.stringify(lastSaved)
-      cmsField.scrival('save', ids)
+      cmsField.scrivito('save', ids)
         .done ->
           storeLastSaved(cmsField, ids)
-          cmsField.trigger('scrival_reload')
+          cmsField.trigger('scrivito_reload')
 
   # Run when clicking the media browser button.
   onMediabrowserOpen = (event) ->
@@ -90,8 +90,8 @@ $ ->
     $(cmsField).data('last-saved', value)
 
   # Initialize referencelist editor and setup event callbacks.
-  scrival.on 'new_content', (root) ->
-    elements = $(root).find('[data-scrival-field-type="referencelist"]:not([data-editor]), [data-editor="referencelist"]')
+  scrivito.on 'new_content', (root) ->
+    elements = $(root).find('[data-scrivito-field-type="referencelist"]:not([data-editor]), [data-editor="referencelist"]')
 
     if elements.length
       transform(elements)
