@@ -102,7 +102,7 @@ $ ->
 
     if savedContent != content
       cmsField = editor.$element
-      cmsField.scrival('save', content).done ->
+      cmsField.scrivito('save', content).done ->
         savedContent = content
 
     else
@@ -110,7 +110,7 @@ $ ->
 
   reload = (editor) ->
     cmsField = editor.$element
-    cmsField.trigger('scrival_reload')
+    cmsField.trigger('scrivito_reload')
 
   # Restores the original content before the editor was opened, also saves it back to the CMS
   # because autosave could have overwritten the content and closes the editor.
@@ -122,19 +122,19 @@ $ ->
 
   # Registers Redactor for all CMS html attributes found in the given scope of the DOM element.
   addOnclickRedactorHandlers = (domElement) ->
-    domElement.on 'click', '[data-scrival-field-type="html"]:not([data-editor]), [data-editor="html"]', (event) ->
+    domElement.on 'click', '[data-scrivito-field-type="html"]:not([data-editor]), [data-editor="html"]', (event) ->
       event.preventDefault()
       cmsField = $(@)
 
       unless cmsField.hasClass('redactor_editor')
-        cmsField.html(cmsField.scrival('content') || '')
+        cmsField.html(cmsField.scrivito('content') || '')
         cmsField.redactor(redactorOptions())
         cmsField.redactor('focus')
 
   # Registers all handlers when inplace editing is activated.
-  scrival.on 'editing', ->
+  scrivito.on 'editing', ->
     addOnclickRedactorHandlers($('body'))
 
   # Registers all handlers when content has changed.
-  scrival.on 'new_content', (domElement) ->
+  scrivito.on 'new_content', (domElement) ->
     addOnclickRedactorHandlers($(domElement))

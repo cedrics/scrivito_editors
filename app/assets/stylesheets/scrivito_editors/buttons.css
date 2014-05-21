@@ -150,12 +150,12 @@ a.editing-button:active {
   Styling for buttons in the details view dialog.
 */
 
-.details-view [data-scrival-field-type="string"] .editing-button,
-.details-view [data-scrival-field-type="text"] .editing-button,
-.details-view [data-scrival-field-type="html"] .editing-button,
-.details-view [data-scrival-field-type="linklist"] .editing-button,
-.details-view [data-scrival-field-type="referencelist"] .editing-button,
-.details-view [data-scrival-field-type="reference"] .editing-button,
-.details-view [data-scrival-field-type="date"] .editing-button {
+.details-view [data-scrivito-field-type="string"] .editing-button,
+.details-view [data-scrivito-field-type="text"] .editing-button,
+.details-view [data-scrivito-field-type="html"] .editing-button,
+.details-view [data-scrivito-field-type="linklist"] .editing-button,
+.details-view [data-scrivito-field-type="referencelist"] .editing-button,
+.details-view [data-scrivito-field-type="reference"] .editing-button,
+.details-view [data-scrivito-field-type="date"] .editing-button {
   margin: 10px 10px 0 0;
 }

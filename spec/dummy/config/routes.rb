@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount ScrivalEditors::Engine => "/scrival_editors"
+  mount ScrivitoEditors::Engine => "/scrivito_editors"
 end

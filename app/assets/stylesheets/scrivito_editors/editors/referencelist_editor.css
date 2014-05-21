@@ -1,0 +1,67 @@
+/*
+  An editor to handle CMS referencelist attributes.
+*/
+
+[data-scrivito-field-type="referencelist"] ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+[data-scrivito-field-type="referencelist"] ul li {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  margin: 0 0 10px 0;
+  overflow: hidden;
+  padding: 10px 10px 10px 10px;
+  position: relative;
+}
+
+[data-scrivito-field-type="referencelist"] ul li:last-child {
+  margin: 0;
+}
+
+[data-scrivito-field-type="referencelist"] ul li.ui-sortable-placeholder:before {
+  display:none;
+}
+
+[data-scrivito-field-type="referencelist"] ul li .list-content {
+  float: left;
+  width: 70%;
+  line-height: 35px;
+}
+
+[data-scrivito-field-type="referencelist"] ul li .actions {
+  float: right;
+}
+
+[data-scrivito-field-type="referencelist"] ul li .actions .editing-button {
+  margin: 0 0 0 10px;
+}
+
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="referencelist"] ul li {
+  padding: 10px 10px 10px 25px;
+}
+
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="referencelist"] ul li:before {
+  content: '||';
+  color: #999;
+  font-size: 17px;
+  left: 10px;
+  position: absolute;
+  top: 25%;
+}
+
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="referencelist"] ul li:hover {
+  background-color: #e6f3f7;
+  cursor: move;
+}
+
+[data-scrivito-display-mode="editing"] [data-scrivito-field-type="referencelist"] ul li.ui-sortable-placeholder {
+  background: #f3f3f3;
+  border: 2px dashed #9bc2cf;
+  opacity: .5;
+  visibility: visible!important;
+}

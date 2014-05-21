@@ -1,3 +1,3 @@
-module ScrivalEditors
+module ScrivitoEditors
   VERSION = '0.0.7'
 end

@@ -1,7 +1,7 @@
 require 'jquery-ui-rails'
 
-module ScrivalEditors
+module ScrivitoEditors
   class Engine < ::Rails::Engine
-    isolate_namespace ScrivalEditors
+    isolate_namespace ScrivitoEditors
   end
 end

@@ -1,0 +1,7 @@
+/*
+  Styles for the text in-place editor.
+*/
+
+[data-scrivito-display-mode="editing"] .text-editor textarea {
+  width: 98%;
+}

@@ -54,7 +54,7 @@
         id: @objectId
       success: (json) =>
         @inspector.html(json.content)
-        scrival.trigger('new_content', @inspector)
+        scrivito.trigger('new_content', @inspector)
 
       error: =>
         @inspector.empty()

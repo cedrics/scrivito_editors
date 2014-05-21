@@ -5,18 +5,18 @@ $ ->
   # For example:
   #   cms_tag(:div, @obj, :my_attribute, data: { placeholder: 'My custom placeholder text.' })
   addPlaceholder = ->
-    cmsFields = $('[data-scrival-field-type]')
+    cmsFields = $('[data-scrivito-field-type]')
 
     cmsFields.each ->
       cmsField = $(@)
-      fieldName = cmsField.attr('data-scrival-field-name')
+      fieldName = cmsField.attr('data-scrivito-field-name')
       defaultPlaceholder = 'Click to edit the "' + fieldName + '" attribute ...'
       placeholder = cmsField.attr('data-placeholder') || defaultPlaceholder
 
       cmsField.attr('data-placeholder', placeholder)
 
-  scrival.on 'new_content', ->
+  scrivito.on 'new_content', ->
     addPlaceholder()
 
-  scrival.on 'editing', ->
+  scrivito.on 'editing', ->
     addPlaceholder()

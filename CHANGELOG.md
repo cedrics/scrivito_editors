@@ -18,15 +18,15 @@
   * Rewrite of string and text editor to better support pasting HTML, correctly handling quotes,
     inserting the carrot at the correct position and better multiline support for preformatted text
     fields. (Thanks @dcsaszar)
-  * Bugfix: Using renamed `obj_class_name` method from the new Scrival SDK instead of `obj_class`.
+  * Bugfix: Using renamed `obj_class_name` method from the new Scrivito SDK instead of `obj_class`.
   * Changed the behavior when an item is clicked in the mediabrowser. Instead of opening the
     inspector, the item is now selected or deselected. A small magnifying glass in the upper right
     corner of the thumbnail now allows to open the inspector for the item.
-  * Rename the fallback inspector view to `details.html`, to be consistent to the new Scrival SDK.
+  * Rename the fallback inspector view to `details.html`, to be consistent to the new Scrivito SDK.
 
 # v0.0.5
   * The template used in the inspector is no longer configurable and always corresponds to the
-    details view used by the Scrival SDK.
+    details view used by the Scrivito SDK.
   * Bugfix: The mediabrowser did not use a correct start index to render multiple thumbnails.
 
 # v0.0.4
