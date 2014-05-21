@@ -1,4 +1,4 @@
-module ScrivalEditors
+module ScrivitoEditors
   class MediabrowserController < ApplicationController
     # Return JSON responses without layout information.
     layout false
@@ -15,13 +15,13 @@ module ScrivalEditors
       @obj = Obj.find(params[:id])
 
       options = {
-        layout: 'scrival_editors/mediabrowser/inspector',
+        layout: 'scrivito_editors/mediabrowser/inspector',
       }
 
       content = begin
         render_to_string(details_view_template(@obj), options)
       rescue ActionView::MissingTemplate
-        render_to_string('scrival_editors/obj/details', options)
+        render_to_string('scrivito_editors/obj/details', options)
       end
 
       render json: { content: content }

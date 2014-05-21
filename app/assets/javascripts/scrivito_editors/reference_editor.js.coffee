@@ -1,12 +1,12 @@
 $ ->
   # Integrates a mediabrowser based editor for reference CMS attributes.
 
-  scrival.on 'editing', ->
-    $('body').on 'click', '[data-scrival-field-type="reference"]:not([data-editor]), [data-editor="reference"]', (event) ->
+  scrivito.on 'editing', ->
+    $('body').on 'click', '[data-scrivito-field-type="reference"]:not([data-editor]), [data-editor="reference"]', (event) ->
       event.preventDefault()
 
       cmsField = $(event.currentTarget)
-      selected = [cmsField.scrival('content')].filter (element) -> element
+      selected = [cmsField.scrivito('content')].filter (element) -> element
       filters = cmsField.data('filters') || cmsField.data('filter')
 
       # Open mediabrowser with current reference selected and restrict selection to one reference.
@@ -21,8 +21,8 @@ $ ->
     onMediabrowserSave = (selection, cmsField) ->
       value = selection[0] || null
 
-      cmsField.scrival('save', value)
+      cmsField.scrivito('save', value)
       .done ->
-        cmsField.trigger('scrival_reload')
+        cmsField.trigger('scrivito_reload')
 
       true

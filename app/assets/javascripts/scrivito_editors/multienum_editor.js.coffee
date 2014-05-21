@@ -1,10 +1,11 @@
 $ ->
   # Define editor behavior for multienum attributes.
 
-  scrival.on 'editing', ->
+  scrivito.on 'editing', ->
     template = (values) ->
       element = $('<select></select>')
         .attr('multiple', 'true')
+        .addClass('form-control')
 
       $.each values, (index, value) ->
         $('<option></option>')
@@ -18,12 +19,12 @@ $ ->
       element = $(event.currentTarget)
       cmsField = element.data('cmsField')
       content = element.val()
-      cmsField.scrival('save', content).done ->
-        cmsField.trigger('scrival_reload')
+      cmsField.scrivito('save', content).done ->
+        cmsField.trigger('scrivito_reload')
 
-    $(document).on 'click', '[data-scrival-field-type="multienum"]:not([data-editor]), [data-editor="multienum"]', (event) ->
+    $(document).on 'click', '[data-scrivito-field-type="multienum"]:not([data-editor]), [data-editor="multienum"]', (event) ->
       cmsField = $(event.currentTarget)
-      selected = cmsField.scrival('content')
+      selected = cmsField.scrivito('content')
       values = cmsField.data('values')
 
       template(values)

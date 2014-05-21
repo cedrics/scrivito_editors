@@ -35,7 +35,7 @@ $ ->
 
   # Returns the closest linklist DOM element.
   getCmsField = (element) ->
-    element.closest('[data-scrival-field-type=linklist]')
+    element.closest('[data-scrivito-field-type=linklist]')
 
   # Saves the entire linklist to the CMS and stores the last successfully saved value.
   save = (cmsField) ->
@@ -43,7 +43,7 @@ $ ->
     lastSaved = getLastSaved(cmsField)
 
     unless JSON.stringify(value) == JSON.stringify(lastSaved)
-      cmsField.scrival('save', value).done ->
+      cmsField.scrivito('save', value).done ->
         storeLastSaved(cmsField, value)
 
   # Run when clicking the '...' button inside a li.
@@ -71,7 +71,7 @@ $ ->
 
     true
 
-  # Transforms an obj id into an url that can be parsed by Scrival
+  # Transforms an obj id into an url that can be parsed by Scrivito
   # to establish an internal link.
   buildUrl = (id) ->
     "/#{id}"
@@ -148,9 +148,8 @@ $ ->
 
     save(cmsField)
 
-  # Initialize linklist editor and setup event callbacks.
-  scrival.on 'new_content', (root) ->
-    linklistElements = $(root).find('[data-scrival-field-type="linklist"]:not([data-editor]), [data-editor="linklist"]')
+  initialize = (root) ->
+    linklistElements = $(root).find('[data-scrivito-field-type="linklist"]:not([data-editor]), [data-editor="linklist"]')
 
     if linklistElements.length
       transformLinks(linklistElements)
@@ -168,3 +167,10 @@ $ ->
           cmsField = getCmsField($(event.target))
 
           save(cmsField)
+
+  # Initialize linklist editor and setup event callbacks.
+  scrivito.on 'new_content', (root) ->
+    initialize(root)
+
+  scrivito.on 'editing', ->
+    initialize(document)
