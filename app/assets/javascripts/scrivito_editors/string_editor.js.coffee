@@ -1,74 +1,66 @@
 $ ->
   # This file integrates contenteditable for string attributes.
 
-  scrivito.on 'editing', ->
-    cmsField = undefined
-    timeout = undefined
+  timeout = undefined
 
-    onKey = (event) ->
-      if timeout?
-        clearTimeout(timeout)
+  onKey = (event) ->
+    if timeout?
+      clearTimeout(timeout)
 
-      if cmsField?
-        key = event.keyCode || event.which
+    cmsField = $(event.currentTarget)
+    key = event.keyCode || event.which
 
-        switch key
-          when 13 # Enter
-            event.preventDefault()
-            cmsField.blur()
-          when 27 # Esc
-            if event.type == 'keyup'
-              event.stopPropagation()
-              cmsField
-                .off('blur')
-                .trigger('scrivito_reload')
-              cmsField = undefined
-          else
-            setTimeout(cleanUp)
-            timeout = setTimeout ( ->
-              save(false)
-            ), 3000
+    switch key
+      when 13 # Enter
+        event.preventDefault()
+        cmsField.blur()
+      when 27 # Esc
+        if event.type == 'keyup'
+          event.stopPropagation()
+          cmsField
+            .off('blur')
+            .trigger('scrivito_reload')
+      else
+        timeout = setTimeout ( ->
+          save(cmsField, false)
+        ), 3000
 
-    onBlur = (event) ->
-      if cmsField?
-        field = cmsField
+  onBlur = (event) ->
+    cmsField = $(event.currentTarget)
 
-        save(true).done ->
-          if field.attr('data-reload') == 'true'
-            field.trigger('scrivito_reload')
+    save(cmsField, true).done ->
+      if cmsField.attr('data-reload') == 'true'
+        cmsField.trigger('scrivito_reload')
 
-    save = (andClose) ->
-      if timeout?
-        clearTimeout(timeout)
+  save = (cmsField, andClose) ->
+    if timeout?
+      clearTimeout(timeout)
 
-      cleanUp()
+    cleanUp(cmsField)
 
-      clone = cmsFieldAndPastedContent().clone()
-      clone.find('br').replaceWith('\n')
-      content = clone.text()
-      clone.remove()
+    clone = cmsFieldAndPastedContent(cmsField).clone()
+    clone.find('br').replaceWith('\n')
+    content = clone.text()
+    clone.remove()
 
-      field = cmsField
+    if andClose
+      cmsField.text(content)
 
-      if andClose
-        cmsField.text(content)
-        cmsField = undefined
+    cmsField.scrivito('save', content)
 
-      field.scrivito('save', content)
+  cleanUp = (cmsField) ->
+    siblings = cmsFieldAndPastedContent(cmsField)
+    pasted = siblings.not(cmsField)
+    if pasted.length > 0
+      pasted.remove()
+      cmsField.text(siblings.text())
 
-    cleanUp = ->
-      siblings = cmsFieldAndPastedContent()
-      pasted = siblings.not(cmsField)
-      if pasted.length > 0
-        pasted.remove()
-        cmsField.text(siblings.text())
+  cmsFieldAndPastedContent = (cmsField) ->
+    cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
 
-    cmsFieldAndPastedContent = ->
-      cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
-
+  initialize = ->
     $('body').on 'mouseenter', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
-      unless cmsField?
-        cmsField = $(event.currentTarget)
+      cmsField = $(event.currentTarget)
 
       unless cmsField.attr('contenteditable')?
         cmsField
@@ -81,3 +73,6 @@ $ ->
     # Prevent editable link strings to follow the link target on click.
     $('body').on 'click', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
       event.preventDefault()
+
+  scrivito.on 'editing', ->
+    initialize()

@@ -1,6 +1,9 @@
+# v0.0.9
+  * Bugfix: It is now possible to have multiple string and text editors active at the same time.
+
 # v0.0.8
   * Use Twitter Bootstrap styling for enum and multienum select fields.
-  
+
 # v0.0.7
   * Linklist and referencelist editors now better handle all aspects of the inplace editing process
     for these two attributes. The "add" button no longer has to be rendered by the application code.
