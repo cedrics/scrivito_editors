@@ -8,7 +8,7 @@
 The [Scrivito](http://scrivito.com) Editors gem is a collection of useful standard
 JavaScript editors based on the Scrivito SDK. The editors allow to edit all CMS
 attributes in place and provide helper for the property view of pages and
-widgets. A media browser is also part of the gem, to add, update and delete
+widgets. A resource browser is also part of the gem, to add, update and delete
 resources.
 
 ## Installation and Usage

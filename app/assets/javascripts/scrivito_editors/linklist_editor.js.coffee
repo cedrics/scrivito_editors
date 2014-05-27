@@ -12,7 +12,7 @@ $ ->
     $("<input type=\"text\" name=\"title\" value=\"#{title}\" placeholder=\"Title\" />
        <input type=\"text\" name=\"url\" value=\"#{url}\" placeholder=\"Url\" class=\"editing-url\" />
        <div class=\"actions\">
-         <a href=\"#\" class=\"editing-button mediabrowser-open editing-green\">
+         <a href=\"#\" class=\"editing-button resourcebrowser-open editing-green\">
            <i class=\"editing-icon editing-icon-search\" />
          </a>
          <a href=\"#\" class=\"editing-button editing-red delete\">
@@ -20,7 +20,7 @@ $ ->
          </a>
        </div>")
 
-  mediabrowserButtonTemplate = ->
+  resourcebrowserButtonTemplate = ->
     icon = $('<i></i>')
       .addClass('editing-icon')
       .addClass('editing-icon-plus')
@@ -47,21 +47,21 @@ $ ->
         storeLastSaved(cmsField, value)
 
   # Run when clicking the '...' button inside a li.
-  onOpenMediabrowser = (event) ->
+  onOpenResourcebrowser = (event) ->
     event.preventDefault()
 
     linkItem = $(event.currentTarget).closest('li')
     cmsField = getCmsField(linkItem)
     filters = cmsField.data('filters') || cmsField.data('filter')
 
-    Mediabrowser.open
+    Resourcebrowser.open
       selection: []
       filters: filters
       onSave: (selection) =>
-        onMediabrowserSaveLinkItem(selection, linkItem)
+        onResourcebrowserSaveLinkItem(selection, linkItem)
 
-  # Media browser callback for saving a single link.
-  onMediabrowserSaveLinkItem = (selection, linkItem) ->
+  # Resource browser callback for saving a single link.
+  onResourcebrowserSaveLinkItem = (selection, linkItem) ->
     url = buildUrl(selection[0])
     linkItem.find('[name=url]').val(url)
 
@@ -121,7 +121,7 @@ $ ->
 
   # Turns the server side generated linklist data into the linklist editor using a template.
   transformLinks = (cmsFields) ->
-    cmsFields.append(mediabrowserButtonTemplate)
+    cmsFields.append(resourcebrowserButtonTemplate)
 
     items = cmsFields.find('li')
 
@@ -160,7 +160,7 @@ $ ->
       linklistElements.on 'blur', 'li input', onBlur
       linklistElements.on 'click', 'li a.delete', removeLink
       linklistElements.on 'click', 'button.add-link', addLink
-      linklistElements.on 'click', 'a.mediabrowser-open', onOpenMediabrowser
+      linklistElements.on 'click', 'a.resourcebrowser-open', onOpenResourcebrowser
 
       linklistElements.find('ul').sortable
         update: (event) ->

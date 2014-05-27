@@ -10,7 +10,7 @@ $ ->
          </a>
        </div>")
 
-  mediabrowserButtonTemplate = ->
+  resourcebrowserButtonTemplate = ->
     icon = $('<i></i>')
       .addClass('editing-icon')
       .addClass('editing-icon-plus')
@@ -18,7 +18,7 @@ $ ->
     button = $('<button></button>')
       .addClass('editing-button')
       .addClass('editing-green')
-      .addClass('mediabrowser-open')
+      .addClass('resourcebrowser-open')
       .html(icon)
 
     button
@@ -37,15 +37,15 @@ $ ->
           storeLastSaved(cmsField, ids)
           cmsField.trigger('scrivito_reload')
 
-  # Run when clicking the media browser button.
-  onMediabrowserOpen = (event) ->
+  # Run when clicking the resource browser button.
+  onResourcebrowserOpen = (event) ->
     event.preventDefault()
 
     cmsField = getCmsField($(event.currentTarget))
     filters = cmsField.data('filters') || cmsField.data('filter')
     ids = getIds(cmsField)
 
-    Mediabrowser.open
+    Resourcebrowser.open
       selection: ids
       filters: filters
 
@@ -74,7 +74,7 @@ $ ->
 
   # Turns the server side generated referencelist data into the reference editor using a template.
   transform = (elements) ->
-    elements.append(mediabrowserButtonTemplate)
+    elements.append(resourcebrowserButtonTemplate)
 
     items = elements.find('li')
 
@@ -101,7 +101,7 @@ $ ->
         storeLastSaved(element, ids)
 
       elements.on 'click', 'li a.delete', remove
-      elements.on 'click', 'button.mediabrowser-open', onMediabrowserOpen
+      elements.on 'click', 'button.resourcebrowser-open', onResourcebrowserOpen
 
       elements.find('ul').sortable
         update: (event) ->

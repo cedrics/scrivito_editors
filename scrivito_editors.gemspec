@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.executables = []
   gem.test_files  = []
   gem.files       = Dir[
-    '{app,config,lib,vendor}/**/*',
+    '{app,lib,vendor}/**/*',
     'LICENSE',
     'Rakefile',
     'README.md',
@@ -32,6 +32,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'railties'
   gem.add_dependency 'coffee-rails'
   gem.add_dependency 'scrivito_sdk'
+  gem.add_dependency 'scrivito_resourcebrowser'
   gem.add_dependency 'jquery-ui-rails'
 
   gem.add_development_dependency 'pry'
