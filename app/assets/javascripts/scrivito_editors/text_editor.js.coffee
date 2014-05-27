@@ -19,6 +19,9 @@ $ ->
             .off('blur')
             .trigger('scrivito_reload')
       else
+        setTimeout ->
+          cleanUp(cmsField)
+          
         timeout = setTimeout ( ->
           save(cmsField, false)
         ), 3000
