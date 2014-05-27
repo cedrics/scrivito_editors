@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
 
   gem.bindir      = 'bin'
   gem.executables = []
-  gem.test_files  = Dir['spec/**/*']
+  gem.test_files  = []
   gem.files       = Dir[
     '{app,config,lib,vendor}/**/*',
     'LICENSE',
@@ -35,5 +35,4 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'jquery-ui-rails'
 
   gem.add_development_dependency 'pry'
-  gem.add_development_dependency 'rspec-rails'
 end
