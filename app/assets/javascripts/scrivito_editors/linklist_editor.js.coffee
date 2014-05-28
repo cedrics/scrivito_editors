@@ -57,6 +57,7 @@ $ ->
     Resourcebrowser.open
       selection: []
       filters: filters
+      selectionMode: 'single'
       onSave: (selection) =>
         onResourcebrowserSaveLinkItem(selection, linkItem)
 

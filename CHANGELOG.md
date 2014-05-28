@@ -1,3 +1,7 @@
+# v0.0.11
+  * `referencelist` and `linklist` editors now make use of the new single selection mode option of
+    the resource browser.
+
 # v0.0.10
   * Extracted resource browser into separate gem.
 

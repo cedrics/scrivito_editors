@@ -13,6 +13,7 @@ $ ->
       Resourcebrowser.open
         selection: selected
         filters: filters
+        selectionMode: 'single'
 
         onSave: (selection) =>
           onResourcebrowserSave(selection, cmsField)
