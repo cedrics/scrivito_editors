@@ -1,4 +1,12 @@
 # v0.0.11
+  * The new Scrivito SDK feature to serialize save requests allows editors to automatically save the
+    content on every input instead of every 3 seconds.
+  * The "Esc" key on string and text editors now properly resets the content to what has been the
+    content when the editor was activated.
+  * All editors now trigger a `save.scrivito_editors` event, when the content was successfully
+    saved in the CMS.
+  * `string` and `text` editors now only save, if the content has changed, as it is already the case
+    for the `html` editor.
   * `referencelist` and `linklist` editors now make use of the new single selection mode option of
     the resource browser.
 

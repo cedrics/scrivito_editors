@@ -1,12 +1,7 @@
 $ ->
   # This file integrates contenteditable for string attributes.
 
-  timeout = undefined
-
   onKey = (event) ->
-    if timeout?
-      clearTimeout(timeout)
-
     cmsField = $(event.currentTarget)
     key = event.keyCode || event.which
 
@@ -15,30 +10,32 @@ $ ->
         event.preventDefault()
         cmsField.blur()
       when 27 # Esc
-        if event.type == 'keyup'
-          event.stopPropagation()
-          cmsField
-            .off('blur')
-            .trigger('scrivito_reload')
-      else
-        setTimeout ->
-          cleanUp(cmsField)
+        event.stopPropagation()
+        content = getOriginalContent(cmsField)
+        cmsField
+          .text(content)
+          .blur()
 
-        timeout = setTimeout ( ->
-          save(cmsField, false)
-        ), 3000
+  onInput = (event) ->
+    cmsField = $(event.currentTarget)
+    save(cmsField, false)
 
   onBlur = (event) ->
     cmsField = $(event.currentTarget)
 
     save(cmsField, true).done ->
+      setOriginalContent(cmsField, cmsField.scrivito('content'))
+
       if cmsField.attr('data-reload') == 'true'
         cmsField.trigger('scrivito_reload')
 
-  save = (cmsField, andClose) ->
-    if timeout?
-      clearTimeout(timeout)
+  getOriginalContent = (cmsField) ->
+    cmsField.data('original_content') || ''
 
+  setOriginalContent = (cmsField, content) ->
+    cmsField.data('original_content', content)
+
+  save = (cmsField, andClose) ->
     cleanUp(cmsField)
 
     clone = cmsFieldAndPastedContent(cmsField).clone()
@@ -49,7 +46,12 @@ $ ->
     if andClose
       cmsField.text(content)
 
-    cmsField.scrivito('save', content)
+    # Save only if the content has changed.
+    if content != cmsField.scrivito('content')
+      cmsField.scrivito('save', content).done ->
+        cmsField.trigger('save.scrivito_editors')
+    else
+      $.Deferred().resolve()
 
   cleanUp = (cmsField) ->
     siblings = cmsFieldAndPastedContent(cmsField)
@@ -72,6 +74,9 @@ $ ->
           .blur(onBlur)
           .keypress(onKey)
           .keyup(onKey)
+          .on('input', onInput)
+
+        setOriginalContent(cmsField, cmsField.scrivito('content'))
 
     # Prevent editable link strings to follow the link target on click.
     $('body').on 'click', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->

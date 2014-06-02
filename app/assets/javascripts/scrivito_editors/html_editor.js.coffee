@@ -1,7 +1,6 @@
 $ ->
   # Configuration and behavior of Redactor html editor. The editor is used for all html CMS
-  # attributes and provides autosave, undo and redo functionality on top of the default Redactor
-  # settings.
+  # attributes and provides autosave on top of the default Redactor settings.
 
   # Stores the id of the last triggered timeout for later reference.
   timeoutID = undefined
@@ -18,24 +17,11 @@ $ ->
   # Stores redactor options, custom settings and configures callbacks.
   redactorOptions = ->
     return {} =
-      # This option allows you to add your own buttons with callback to the toolbar.
-      # http://imperavi.com/redactor/docs/settings/#set-buttonsCustom
-      buttonsCustom:
-        undoButton:
-          title: 'Undo'
-          callback: undoAction
-        redoButton:
-          title: 'Redo'
-          callback: redoAction
-
       # This setting defines the array of toolbar buttons.
       # http://imperavi.com/redactor/docs/settings/#set-buttons
-      buttons: ['undoButton', 'redoButton',
-        '|', 'formatting',
-        '|', 'bold', 'italic', 'deleted', 'underline',
-        '|', 'unorderedlist', 'orderedlist',
-        '|', 'table', 'link',
-        '|', 'html'
+      buttons: [
+        'formatting', 'bold', 'italic', 'deleted', 'underline',
+        'unorderedlist', 'orderedlist', 'table', 'link', 'html',
       ]
 
       # This option allows you to set whether Redactor gets cursor focus on load or not.
@@ -90,12 +76,6 @@ $ ->
       saveContents(editor)
     ), autosaveInterval
 
-  undoAction = ->
-    @execCommand('undo')
-
-  redoAction = ->
-    @execCommand('redo')
-
   # Saves the current editor content to the CMS if it has changed.
   saveContents = (editor) ->
     content = editor.get()
@@ -104,7 +84,7 @@ $ ->
       cmsField = editor.$element
       cmsField.scrivito('save', content).done ->
         savedContent = content
-
+        cmsField.trigger('save.scrivito_editors')
     else
       $.Deferred().resolve()
 

@@ -24,6 +24,7 @@ $ ->
 
       cmsField.scrivito('save', value)
       .done ->
+        cmsField.trigger('save.scrivito_editors')
         cmsField.trigger('scrivito_reload')
 
       true

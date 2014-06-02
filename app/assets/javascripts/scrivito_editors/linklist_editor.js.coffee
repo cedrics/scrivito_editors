@@ -44,6 +44,7 @@ $ ->
 
     unless JSON.stringify(value) == JSON.stringify(lastSaved)
       cmsField.scrivito('save', value).done ->
+        cmsField.trigger('save.scrivito_editors')
         storeLastSaved(cmsField, value)
 
   # Run when clicking the '...' button inside a li.
