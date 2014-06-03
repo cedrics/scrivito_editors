@@ -1,0 +1,37 @@
+/*
+  Plugin styles for the save button.
+*/
+
+.redactor_toolbar li a.re-save {
+  color: #439439;
+  font-family: 'editing_iconsregular';
+  font-size: 7px;
+  padding: 14px 10px 4px 10px;
+}
+
+.redactor_toolbar li a.re-save:before {
+  content: "\F027";
+}
+
+.redactor_toolbar li a.re-save:hover {
+  color: #fff;
+}
+
+/*
+  Plugin styles for the close button.
+*/
+
+.redactor_toolbar li a.re-close {
+  color: #aa4040;
+  font-family: 'editing_iconsregular';
+  font-size: 7px;
+  padding: 14px 10px 4px 10px;
+}
+
+.redactor_toolbar li a.re-close:before {
+  content: "\F028";
+}
+
+.redactor_toolbar li a.re-close:hover {
+  color: #fff;
+}

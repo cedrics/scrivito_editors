@@ -1,7 +1,28 @@
-$ ->
-  # Configuration and behavior of Redactor html editor. The editor is used for all html CMS
-  # attributes and provides autosave on top of the default Redactor settings.
+# Configuration and behavior of Redactor html editor. The editor is used for all html CMS
+# attributes and provides autosave on top of the default Redactor settings.
 
+# Check if the namespace for plugins exists and create it otherwise.
+unless @RedactorPlugins?
+  @RedactorPlugins = {}
+
+# Plugin for saving and closing the editor with a button in the toolbar.
+@RedactorPlugins.save =
+  init: ->
+    @buttonAddFirst('save', 'Save and close', @saveAction)
+
+  saveAction: (buttonName, buttonDOM, buttonObj, event) ->
+    @.callback('blur', event)
+
+# Plugin for closing the editor without saving with a button in the toolbar.
+@RedactorPlugins.close =
+  init: ->
+    @buttonAddAfter('save', 'close', 'Close without saving', @closeAction)
+
+  closeAction: (buttonName, buttonDOM, buttonObj, event) ->
+    event.keyCode = 27
+    @.callback('keyup', event)
+
+$ ->
   # Stores the id of the last triggered timeout for later reference.
   timeoutID = undefined
 
@@ -23,6 +44,10 @@ $ ->
         'formatting', 'bold', 'italic', 'deleted', 'underline',
         'unorderedlist', 'orderedlist', 'table', 'link', 'html',
       ]
+
+      # This options allows to configure what plugins are loaded. Plugins need to be defined in the
+      # +RedactorPlugins+ namespace.
+      plugins: ['save', 'close']
 
       # This option allows you to set whether Redactor gets cursor focus on load or not.
       # http://imperavi.com/redactor/docs/settings/#set-focus

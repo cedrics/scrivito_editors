@@ -1,4 +1,6 @@
 # v0.0.11
+  * Added "Save and close" and "Close without saving" buttons to the HTML editor, to have an
+    additional option to save and close the editor, besides clicking outside of it or hitting "Esc".
   * The new Scrivito SDK feature to serialize save requests allows editors to automatically save the
     content on every input instead of every 3 seconds.
   * The "Esc" key on string and text editors now properly resets the content to what has been the
