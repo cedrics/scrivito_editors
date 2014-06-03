@@ -11,10 +11,7 @@ $ ->
         cmsField.blur()
       when 27 # Esc
         event.stopPropagation()
-        content = getOriginalContent(cmsField)
-        cmsField
-          .text(content)
-          .blur()
+        cmsField.blur()
 
   onInput = (event) ->
     cmsField = $(event.currentTarget)
@@ -24,16 +21,8 @@ $ ->
     cmsField = $(event.currentTarget)
 
     save(cmsField, true).done ->
-      setOriginalContent(cmsField, cmsField.scrivito('content'))
-
       if cmsField.attr('data-reload') == 'true'
         cmsField.trigger('scrivito_reload')
-
-  getOriginalContent = (cmsField) ->
-    cmsField.data('original_content') || ''
-
-  setOriginalContent = (cmsField, content) ->
-    cmsField.data('original_content', content)
 
   save = (cmsField, andClose) ->
     cleanUp(cmsField)
@@ -75,8 +64,6 @@ $ ->
           .keypress(onKey)
           .keyup(onKey)
           .on('input', onInput)
-
-        setOriginalContent(cmsField, cmsField.scrivito('content'))
 
     # Prevent editable link strings to follow the link target on click.
     $('body').on 'click', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->

@@ -5,36 +5,15 @@
 unless @RedactorPlugins?
   @RedactorPlugins = {}
 
-# Plugin for saving and closing the editor with a button in the toolbar.
-@RedactorPlugins.save =
-  init: ->
-    @buttonAddFirst('save', 'Save and close', @saveAction)
-
-  saveAction: (buttonName, buttonDOM, buttonObj, event) ->
-    @.callback('blur', event)
-
-# Plugin for closing the editor without saving with a button in the toolbar.
+# Plugin for closing the editor with a button in the toolbar.
 @RedactorPlugins.close =
   init: ->
-    @buttonAddAfter('save', 'close', 'Close without saving', @closeAction)
+    @buttonAddFirst('close', 'Close', @closeAction)
 
   closeAction: (buttonName, buttonDOM, buttonObj, event) ->
-    event.keyCode = 27
-    @.callback('keyup', event)
+    @.callback('blur')
 
 $ ->
-  # Stores the id of the last triggered timeout for later reference.
-  timeoutID = undefined
-
-  # Milliseconds after which to save the content automatically.
-  autosaveInterval = 3000
-
-  # Stores the last saved content written to the CMS to allow comparison with editor content.
-  savedContent = undefined
-
-  # Stores the content before the editor is opened and changes occur.
-  originalContent = undefined
-
   # Stores redactor options, custom settings and configures callbacks.
   redactorOptions = ->
     return {} =
@@ -47,7 +26,7 @@ $ ->
 
       # This options allows to configure what plugins are loaded. Plugins need to be defined in the
       # +RedactorPlugins+ namespace.
-      plugins: ['save', 'close']
+      plugins: ['close']
 
       # This option allows you to set whether Redactor gets cursor focus on load or not.
       # http://imperavi.com/redactor/docs/settings/#set-focus
@@ -57,22 +36,16 @@ $ ->
       # http://imperavi.com/redactor/docs/settings/#set-convertDivs
       convertDivs: false
 
-      # This callback is triggered after Redactor is launched.
-      # http://imperavi.com/redactor/docs/callbacks/#callback-initCallback
-      initCallback: ->
-        originalContent = @get()
-
       # This callback fires every time when content changes in Redactor.
       # http://imperavi.com/redactor/docs/callbacks/#callback-changeCallback
       changeCallback: ->
-        autosaveAction(@)
+        saveContents(@)
 
       # This callback is triggered when Redactor loses focus.
       # http://imperavi.com/redactor/docs/callbacks/#callback-blurCallback
       blurCallback: ->
-        saveContents(@).done =>
-          @.destroy()
-          reload(@)
+        @.destroy()
+        saveContents(@)
 
       # This callback is triggered when a key is released.
       # http://imperavi.com/redactor/docs/callbacks/#callback-keyupCallback
@@ -81,49 +54,26 @@ $ ->
         key = event.keyCode || event.which
 
         if key == 27
-          cancelEditing(@)
+          @.callback('blur')
         else
-          autosaveAction(@)
+          saveContents(@)
 
       # This callback allows to get pasted code after clean on paste.
       # http://imperavi.com/redactor/docs/callbacks/#callback-pasteAfterCallback
       pasteAfterCallback: (html) ->
-        autosaveAction(@)
+        saveContents(@)
         html
 
-  # Registers a timeout to save the editor content after a certain interval. The timeout gets reset
-  # on every change.
-  autosaveAction = (editor) ->
-    if timeoutID
-      clearTimeout(timeoutID)
-
-    timeoutID = setTimeout ( ->
-      saveContents(editor)
-    ), autosaveInterval
-
-  # Saves the current editor content to the CMS if it has changed.
+  # Saves the current editor content to the CMS.
   saveContents = (editor) ->
+    cmsField = editor.$element
     content = editor.get()
 
-    if savedContent != content
-      cmsField = editor.$element
+    if content != cmsField.scrivito('content')
       cmsField.scrivito('save', content).done ->
-        savedContent = content
         cmsField.trigger('save.scrivito_editors')
     else
       $.Deferred().resolve()
-
-  reload = (editor) ->
-    cmsField = editor.$element
-    cmsField.trigger('scrivito_reload')
-
-  # Restores the original content before the editor was opened, also saves it back to the CMS
-  # because autosave could have overwritten the content and closes the editor.
-  cancelEditing = (editor) ->
-    editor.set(originalContent)
-    saveContents(editor).done ->
-      reload(editor)
-    editor.destroy()
 
   # Registers Redactor for all CMS html attributes found in the given scope of the DOM element.
   addOnclickRedactorHandlers = (domElement) ->

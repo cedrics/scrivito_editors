@@ -1,14 +1,15 @@
 # v0.0.11
-  * Added "Save and close" and "Close without saving" buttons to the HTML editor, to have an
-    additional option to save and close the editor, besides clicking outside of it or hitting "Esc".
+  * Added "Close" button to the HTML editor, to have an additional option to close the editor,
+    besides hitting "Esc".
   * The new Scrivito SDK feature to serialize save requests allows editors to automatically save the
-    content on every input instead of every 3 seconds.
-  * The "Esc" key on string and text editors now properly resets the content to what has been the
-    content when the editor was activated.
+    content on every input instead of every 3 seconds. The `string`, `text` and `html` editor now
+    all make use of this feature.
+  * The "Esc" key on `string`, `text` and `html` editors now just destroys the editor, without
+    resetting to any old content.
   * All editors now trigger a `save.scrivito_editors` event, when the content was successfully
     saved in the CMS.
-  * `string` and `text` editors now only save, if the content has changed, as it is already the case
-    for the `html` editor.
+  * `string` and `text` editors now only save, if the content has changed, as it is already
+    the case for the `html` editor.
   * `referencelist` and `linklist` editors now make use of the new single selection mode option of
     the resource browser.
 
