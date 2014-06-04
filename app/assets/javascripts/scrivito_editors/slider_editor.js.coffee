@@ -9,6 +9,7 @@ $ ->
       cmsField = $(@).data('cmsField')
       content = ui.value
       cmsField.scrivito('save', content).done ->
+        cmsField.trigger('save.scrivito_editors')
         cmsField.trigger('scrivito_reload')
 
     onSlide = (event, ui) ->

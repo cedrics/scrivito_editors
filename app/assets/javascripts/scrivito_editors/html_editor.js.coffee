@@ -1,42 +1,32 @@
+# Configuration and behavior of Redactor html editor. The editor is used for all html CMS
+# attributes and provides autosave on top of the default Redactor settings.
+
+# Check if the namespace for plugins exists and create it otherwise.
+unless @RedactorPlugins?
+  @RedactorPlugins = {}
+
+# Plugin for closing the editor with a button in the toolbar.
+@RedactorPlugins.close =
+  init: ->
+    @buttonAddFirst('close', 'Close', @closeAction)
+
+  closeAction: (buttonName, buttonDOM, buttonObj, event) ->
+    @.callback('blur')
+
 $ ->
-  # Configuration and behavior of Redactor html editor. The editor is used for all html CMS
-  # attributes and provides autosave, undo and redo functionality on top of the default Redactor
-  # settings.
-
-  # Stores the id of the last triggered timeout for later reference.
-  timeoutID = undefined
-
-  # Milliseconds after which to save the content automatically.
-  autosaveInterval = 3000
-
-  # Stores the last saved content written to the CMS to allow comparison with editor content.
-  savedContent = undefined
-
-  # Stores the content before the editor is opened and changes occur.
-  originalContent = undefined
-
   # Stores redactor options, custom settings and configures callbacks.
   redactorOptions = ->
     return {} =
-      # This option allows you to add your own buttons with callback to the toolbar.
-      # http://imperavi.com/redactor/docs/settings/#set-buttonsCustom
-      buttonsCustom:
-        undoButton:
-          title: 'Undo'
-          callback: undoAction
-        redoButton:
-          title: 'Redo'
-          callback: redoAction
-
       # This setting defines the array of toolbar buttons.
       # http://imperavi.com/redactor/docs/settings/#set-buttons
-      buttons: ['undoButton', 'redoButton',
-        '|', 'formatting',
-        '|', 'bold', 'italic', 'deleted', 'underline',
-        '|', 'unorderedlist', 'orderedlist',
-        '|', 'table', 'link',
-        '|', 'html'
+      buttons: [
+        'formatting', 'bold', 'italic', 'deleted', 'underline',
+        'unorderedlist', 'orderedlist', 'table', 'link', 'html',
       ]
+
+      # This options allows to configure what plugins are loaded. Plugins need to be defined in the
+      # +RedactorPlugins+ namespace.
+      plugins: ['close']
 
       # This option allows you to set whether Redactor gets cursor focus on load or not.
       # http://imperavi.com/redactor/docs/settings/#set-focus
@@ -46,22 +36,16 @@ $ ->
       # http://imperavi.com/redactor/docs/settings/#set-convertDivs
       convertDivs: false
 
-      # This callback is triggered after Redactor is launched.
-      # http://imperavi.com/redactor/docs/callbacks/#callback-initCallback
-      initCallback: ->
-        originalContent = @get()
-
       # This callback fires every time when content changes in Redactor.
       # http://imperavi.com/redactor/docs/callbacks/#callback-changeCallback
       changeCallback: ->
-        autosaveAction(@)
+        saveContents(@)
 
       # This callback is triggered when Redactor loses focus.
       # http://imperavi.com/redactor/docs/callbacks/#callback-blurCallback
       blurCallback: ->
-        saveContents(@).done =>
-          @.destroy()
-          reload(@)
+        @.destroy()
+        saveContents(@)
 
       # This callback is triggered when a key is released.
       # http://imperavi.com/redactor/docs/callbacks/#callback-keyupCallback
@@ -70,55 +54,26 @@ $ ->
         key = event.keyCode || event.which
 
         if key == 27
-          cancelEditing(@)
+          @.callback('blur')
         else
-          autosaveAction(@)
+          saveContents(@)
 
       # This callback allows to get pasted code after clean on paste.
       # http://imperavi.com/redactor/docs/callbacks/#callback-pasteAfterCallback
       pasteAfterCallback: (html) ->
-        autosaveAction(@)
+        saveContents(@)
         html
 
-  # Registers a timeout to save the editor content after a certain interval. The timeout gets reset
-  # on every change.
-  autosaveAction = (editor) ->
-    if timeoutID
-      clearTimeout(timeoutID)
-
-    timeoutID = setTimeout ( ->
-      saveContents(editor)
-    ), autosaveInterval
-
-  undoAction = ->
-    @execCommand('undo')
-
-  redoAction = ->
-    @execCommand('redo')
-
-  # Saves the current editor content to the CMS if it has changed.
+  # Saves the current editor content to the CMS.
   saveContents = (editor) ->
+    cmsField = editor.$element
     content = editor.get()
 
-    if savedContent != content
-      cmsField = editor.$element
+    if content != cmsField.scrivito('content')
       cmsField.scrivito('save', content).done ->
-        savedContent = content
-
+        cmsField.trigger('save.scrivito_editors')
     else
       $.Deferred().resolve()
-
-  reload = (editor) ->
-    cmsField = editor.$element
-    cmsField.trigger('scrivito_reload')
-
-  # Restores the original content before the editor was opened, also saves it back to the CMS
-  # because autosave could have overwritten the content and closes the editor.
-  cancelEditing = (editor) ->
-    editor.set(originalContent)
-    saveContents(editor).done ->
-      reload(editor)
-    editor.destroy()
 
   # Registers Redactor for all CMS html attributes found in the given scope of the DOM element.
   addOnclickRedactorHandlers = (domElement) ->

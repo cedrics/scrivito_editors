@@ -23,6 +23,7 @@ $ ->
 
       cmsField.scrivito('save', dateTimeText)
         .done ->
+          cmsField.trigger('save.scrivito_editors')
           cmsField.trigger('scrivito_reload')
 
     $('body').on 'click', '[data-scrivito-field-type="date"]:not(.hasDatepicker):not([data-editor]), [data-editor="date"]', (event) ->

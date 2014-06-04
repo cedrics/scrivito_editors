@@ -19,6 +19,7 @@ $ ->
       cmsField = element.data('cmsField')
       content = element.val()
       cmsField.scrivito('save', content).done ->
+        cmsField.trigger('save.scrivito_editors')
         cmsField.trigger('scrivito_reload')
 
     $(document).on 'click', '[data-scrivito-field-type="enum"]:not([data-editor]), [data-editor="enum"]', (event) ->

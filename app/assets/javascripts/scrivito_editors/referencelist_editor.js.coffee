@@ -35,6 +35,7 @@ $ ->
       cmsField.scrivito('save', ids)
         .done ->
           storeLastSaved(cmsField, ids)
+          cmsField.trigger('save.scrivito_editors')
           cmsField.trigger('scrivito_reload')
 
   # Run when clicking the resource browser button.

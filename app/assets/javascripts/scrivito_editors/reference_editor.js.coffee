@@ -13,6 +13,7 @@ $ ->
       Resourcebrowser.open
         selection: selected
         filters: filters
+        selectionMode: 'single'
 
         onSave: (selection) =>
           onResourcebrowserSave(selection, cmsField)
@@ -23,6 +24,7 @@ $ ->
 
       cmsField.scrivito('save', value)
       .done ->
+        cmsField.trigger('save.scrivito_editors')
         cmsField.trigger('scrivito_reload')
 
       true

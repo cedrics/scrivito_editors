@@ -1,0 +1,18 @@
+/*
+  Plugin styles for the close button.
+*/
+
+.redactor_toolbar li a.re-close {
+  color: #aa4040;
+  font-family: 'editing_iconsregular';
+  font-size: 7px;
+  padding: 14px 10px 4px 10px;
+}
+
+.redactor_toolbar li a.re-close:before {
+  content: "\F028";
+}
+
+.redactor_toolbar li a.re-close:hover {
+  color: #fff;
+}
