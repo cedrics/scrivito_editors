@@ -21,7 +21,6 @@ $ ->
       content = element.val()
       cmsField.scrivito('save', content).done ->
         cmsField.trigger('save.scrivito_editors')
-        cmsField.trigger('scrivito_reload')
 
     $(document).on 'click', '[data-scrivito-field-type="multienum"]:not([data-editor]), [data-editor="multienum"]', (event) ->
       cmsField = $(event.currentTarget)

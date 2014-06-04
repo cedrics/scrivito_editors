@@ -1,3 +1,6 @@
+# v0.0.12
+  * Editing `enum` and `multienum` fields no longer triggers a page or widget reload.
+
 # v0.0.11
   * Added "Close" button to the HTML editor, to have an additional option to close the editor,
     besides hitting "Esc".
