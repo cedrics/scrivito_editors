@@ -15,8 +15,6 @@ $ ->
 
       cmsField.attr('data-placeholder', placeholder)
 
-  scrivito.on 'new_content', ->
-    addPlaceholder()
-
-  scrivito.on 'editing', ->
-    addPlaceholder()
+  scrivito.on 'content', ->
+    if scrivito.in_editable_view()
+      addPlaceholder()

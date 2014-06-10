@@ -69,5 +69,6 @@ $ ->
     $('body').on 'click', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
       event.preventDefault()
 
-  scrivito.on 'editing', ->
-    initialize()
+  scrivito.on 'load', ->
+    if scrivito.in_editable_view()
+      initialize()

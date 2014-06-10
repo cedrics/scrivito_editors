@@ -1,4 +1,5 @@
 # v0.0.12
+  * Integrate new Scrivito SDK JavaScript events.
   * Editing `enum` and `multienum` fields no longer triggers a page or widget reload.
 
 # v0.0.11

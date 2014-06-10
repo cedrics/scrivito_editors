@@ -171,8 +171,6 @@ $ ->
           save(cmsField)
 
   # Initialize linklist editor and setup event callbacks.
-  scrivito.on 'new_content', (root) ->
-    initialize(root)
-
-  scrivito.on 'editing', ->
-    initialize(document)
+  scrivito.on 'content', (root) ->
+    if scrivito.in_editable_view()
+      initialize(root)

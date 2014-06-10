@@ -91,22 +91,23 @@ $ ->
     $(cmsField).data('last-saved', value)
 
   # Initialize referencelist editor and setup event callbacks.
-  scrivito.on 'new_content', (root) ->
-    elements = $(root).find('[data-scrivito-field-type="referencelist"]:not([data-editor]), [data-editor="referencelist"]')
+  scrivito.on 'content', (root) ->
+    if scrivito.in_editable_view()
+      elements = $(root).find('[data-scrivito-field-type="referencelist"]:not([data-editor]), [data-editor="referencelist"]')
 
-    if elements.length
-      transform(elements)
+      if elements.length
+        transform(elements)
 
-      for element in elements
-        ids = getIds(element)
-        storeLastSaved(element, ids)
+        for element in elements
+          ids = getIds(element)
+          storeLastSaved(element, ids)
 
-      elements.on 'click', 'li a.delete', remove
-      elements.on 'click', 'button.resourcebrowser-open', onResourcebrowserOpen
+        elements.on 'click', 'li a.delete', remove
+        elements.on 'click', 'button.resourcebrowser-open', onResourcebrowserOpen
 
-      elements.find('ul').sortable
-        update: (event) ->
-          cmsField = getCmsField($(event.target))
-          ids = getIds(cmsField)
+        elements.find('ul').sortable
+          update: (event) ->
+            cmsField = getCmsField($(event.target))
+            ids = getIds(cmsField)
 
-          save(ids, cmsField)
+            save(ids, cmsField)
