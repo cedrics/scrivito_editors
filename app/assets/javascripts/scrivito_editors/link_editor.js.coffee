@@ -37,13 +37,10 @@ $ ->
 
   # Saves the entire linklist to the CMS and stores the last successfully saved value.
   save = (cmsField) ->
-    value = getAttributes(cmsField)
-    lastSaved = getLastSaved(cmsField)
+    value = getAttributes(cmsField) || null
 
-    unless JSON.stringify(value) == JSON.stringify(lastSaved)
-      cmsField.scrivito('save', value).done ->
-        cmsField.trigger('save.scrivito_editors')
-        storeLastSaved(cmsField, value)
+    cmsField.scrivito('save', value).done ->
+      cmsField.trigger('save.scrivito_editors')
 
   # Run when clicking the '...' button inside a li.
   onOpenResourcebrowser = (event) ->
@@ -107,14 +104,6 @@ $ ->
       if items.length == 0
         cmsField.append(template())
 
-  # Returns the last saved value.
-  getLastSaved = (cmsField) ->
-    cmsField.data('last-saved')
-
-  # Stores a given value as last saved.
-  storeLastSaved = (cmsField, value) ->
-    $(cmsField).data('last-saved', value)
-
   # Automatically save when focus is lost.
   onBlur = (event) ->
     cmsField = getCmsField($(event.currentTarget))
@@ -127,15 +116,9 @@ $ ->
     if linkElements.length
       transformLinks(linkElements)
 
-      for linkElement in linkElements
-        storeLastSaved(linkElement, getAttributes(linkElement))
-
       linkElements.on 'blur', 'li input', onBlur
       linkElements.on 'click', 'a.resourcebrowser-open', onOpenResourcebrowser
 
   # Initialize link editor and setup event callbacks.
-  scrivito.on 'new_content', (root) ->
+  scrivito.on 'content', (root) ->
     initialize(root)
-
-  scrivito.on 'editing', ->
-    initialize(document)

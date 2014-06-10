@@ -1,4 +1,7 @@
 # v0.0.13
+  * Added editor for new attribute type `link`. It lets you set the title and url of the link,
+    similar to how a linklist is edited. It can also handle an empty url, which effectively deletes
+    the link.
   * Allow to select multiple editors on one cms field. You can now use
     `data-editor="reference image"` for example, to activate both editors.
   * Added image upload editor, that allows to drag & drop an image on an existing image. This

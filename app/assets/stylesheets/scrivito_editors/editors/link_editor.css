@@ -35,12 +35,12 @@
 
 [data-scrivito-field-type="link"] ul li .actions {
   position: absolute;
-  top: 11px;
-  right: 11px;
+  top: 33px;
+  right: 63px;
 }
 
 [data-scrivito-field-type="link"] ul li .actions .editing-button {
-  margin: 0 0 0 10px;
+  margin: 0;
 }
 
 
