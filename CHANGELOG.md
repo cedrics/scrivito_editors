@@ -1,3 +1,9 @@
+# v0.0.12
+  * Rails no longer supports the `vendor` directory, so we moved the assets into the standard asset
+    folder, so that they are integrated into the asset pipeline automatically.
+  * Integrate new Scrivito SDK JavaScript events.
+  * Editing `enum` and `multienum` fields no longer triggers a page or widget reload.
+
 # v0.0.11
   * Added "Close" button to the HTML editor, to have an additional option to close the editor,
     besides hitting "Esc".

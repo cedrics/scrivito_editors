@@ -86,10 +86,7 @@ $ ->
         cmsField.redactor(redactorOptions())
         cmsField.redactor('focus')
 
-  # Registers all handlers when inplace editing is activated.
-  scrivito.on 'editing', ->
-    addOnclickRedactorHandlers($('body'))
-
   # Registers all handlers when content has changed.
-  scrivito.on 'new_content', (domElement) ->
-    addOnclickRedactorHandlers($(domElement))
+  scrivito.on 'content', (domElement) ->
+    if scrivito.in_editable_view()
+      addOnclickRedactorHandlers($(domElement))
