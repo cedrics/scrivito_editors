@@ -10,10 +10,5 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery.ui.sortable
-//= require jquery.ui.datepicker
-//= require jquery.ui.slider
-//= require jquery-ui-timepicker-addon.min
-//= require redactor
-//= require scrivito_resourcebrowser
-//= require_tree .
+//= require scrivito_editors_addons
+//= require scrivito_editors_core

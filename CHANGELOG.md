@@ -1,3 +1,10 @@
+# v0.0.13
+  * Removed unused `jQuery.center` addon.
+  * We separated the jQuery addons from the core editors functionality, which allows to only require
+    one, but not the other. Use `//= require 'scrivito_editors'` to require both,
+    `//= require 'scrivito_editors_core'` to only include the editor but not the addons and use
+    `//= require 'scrivito_addons'` if you only want the addons. (Thanks @cedrics)
+
 # v0.0.12
   * Rails no longer supports the `vendor` directory, so we moved the assets into the standard asset
     folder, so that they are integrated into the asset pipeline automatically.
