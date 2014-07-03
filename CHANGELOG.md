@@ -1,4 +1,5 @@
 # v0.0.13
+  * Updated Redactor to version 9.2.5.
   * Removed unused `jQuery.center` addon.
   * We separated the jQuery addons from the core editors functionality, which allows to only require
     one, but not the other. Use `//= require 'scrivito_editors'` to require both,
