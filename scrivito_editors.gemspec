@@ -33,7 +33,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'coffee-rails'
   gem.add_dependency 'scrivito_sdk'
   gem.add_dependency 'scrivito_resourcebrowser'
-  gem.add_dependency 'jquery-ui-rails'
+  gem.add_dependency 'jquery-ui-rails', '~> 4.0'
 
   gem.add_development_dependency 'pry'
 end
