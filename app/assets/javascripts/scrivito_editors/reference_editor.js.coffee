@@ -3,7 +3,7 @@ $ ->
 
   scrivito.on 'load', ->
     if scrivito.in_editable_view()
-      $('body').on 'click', '[data-scrivito-field-type="reference"]:not([data-editor]), [data-editor="reference"]', (event) ->
+      $('body').on 'click', '[data-scrivito-field-type="reference"]:not([data-editor]), [data-editor~="reference"]', (event) ->
         event.preventDefault()
 
         cmsField = $(event.currentTarget)

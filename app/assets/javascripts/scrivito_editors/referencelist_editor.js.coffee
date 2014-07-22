@@ -93,7 +93,7 @@ $ ->
   # Initialize referencelist editor and setup event callbacks.
   scrivito.on 'content', (root) ->
     if scrivito.in_editable_view()
-      elements = $(root).find('[data-scrivito-field-type="referencelist"]:not([data-editor]), [data-editor="referencelist"]')
+      elements = $(root).find('[data-scrivito-field-type="referencelist"]:not([data-editor]), [data-editor~="referencelist"]')
 
       if elements.length
         transform(elements)

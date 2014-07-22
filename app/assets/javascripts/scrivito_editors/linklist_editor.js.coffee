@@ -151,7 +151,7 @@ $ ->
     save(cmsField)
 
   initialize = (root) ->
-    linklistElements = $(root).find('[data-scrivito-field-type="linklist"]:not([data-editor]), [data-editor="linklist"]')
+    linklistElements = $(root).find('[data-scrivito-field-type="linklist"]:not([data-editor]), [data-editor~="linklist"]')
 
     if linklistElements.length
       transformLinks(linklistElements)

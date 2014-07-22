@@ -1,4 +1,6 @@
 # v0.0.13
+  * Allow to select multiple editors on one cms field. You can now use
+    `data-editor="reference image"` for example, to activate both editors.
   * Updated Redactor to version 9.2.5.
   * Removed unused `jQuery.center` addon.
   * We separated the jQuery addons from the core editors functionality, which allows to only require

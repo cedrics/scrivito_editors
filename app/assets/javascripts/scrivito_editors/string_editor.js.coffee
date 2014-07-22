@@ -53,7 +53,7 @@ $ ->
     cmsField.siblings().addBack().not(cmsField.data('siblings_before_edit'))
 
   initialize = ->
-    $('body').on 'mouseenter', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
+    $('body').on 'mouseenter', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor~="string"]', (event) ->
       cmsField = $(event.currentTarget)
 
       unless cmsField.attr('contenteditable')?
@@ -66,7 +66,7 @@ $ ->
           .on('input', onInput)
 
     # Prevent editable link strings to follow the link target on click.
-    $('body').on 'click', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor="string"]', (event) ->
+    $('body').on 'click', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor~="string"]', (event) ->
       event.preventDefault()
 
   scrivito.on 'load', ->
