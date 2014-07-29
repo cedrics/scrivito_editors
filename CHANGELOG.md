@@ -1,4 +1,8 @@
 # v0.0.13
+  * Added `autosave` option to the string editor to prevent that on every input the content is saved
+    to the CMS. This is useful when setting a permalink for example, where intermediate strings
+    would trigger an error. When `data-autosave` is set to `false`, then only `enter` and the `blur`
+    event will save the string to the CMS.
   * Added editor for new attribute type `link`. It lets you set the title and url of the link,
     similar to how a linklist is edited. It can also handle an empty url, which effectively deletes
     the link.

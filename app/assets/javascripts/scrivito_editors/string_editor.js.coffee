@@ -63,7 +63,9 @@ $ ->
           .blur(onBlur)
           .keypress(onKey)
           .keyup(onKey)
-          .on('input', onInput)
+
+      if cmsField.attr('data-autosave') != 'false'
+        cmsField.on('input', onInput)
 
     # Prevent editable link strings to follow the link target on click.
     $('body').on 'click', '[data-scrivito-field-type="string"]:not([data-editor]), [data-editor~="string"]', (event) ->
