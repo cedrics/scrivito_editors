@@ -1,3 +1,22 @@
+# v0.0.13
+  * Added `autosave` option to the string editor to prevent that on every input the content is saved
+    to the CMS. This is useful when setting a permalink for example, where intermediate strings
+    would trigger an error. When `data-autosave` is set to `false`, then only `enter` and the `blur`
+    event will save the string to the CMS.
+  * Added editor for new attribute type `link`. It lets you set the title and url of the link,
+    similar to how a linklist is edited. It can also handle an empty url, which effectively deletes
+    the link.
+  * Allow to select multiple editors on one cms field. You can now use
+    `data-editor="reference image"` for example, to activate both editors.
+  * Added image upload editor, that allows to drag & drop an image on an existing image. This
+    functionality was moved out of the Scrivito SDK.
+  * Updated Redactor to version 9.2.5.
+  * Removed unused `jQuery.center` addon.
+  * We separated the jQuery addons from the core editors functionality, which allows to only require
+    one, but not the other. Use `//= require 'scrivito_editors'` to require both,
+    `//= require 'scrivito_editors_core'` to only include the editor but not the addons and use
+    `//= require 'scrivito_addons'` if you only want the addons. (Thanks @cedrics)
+
 # v0.0.12
   * Rails no longer supports the `vendor` directory, so we moved the assets into the standard asset
     folder, so that they are integrated into the asset pipeline automatically.

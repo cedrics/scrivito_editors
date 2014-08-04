@@ -22,7 +22,7 @@ $ ->
         cmsField.scrivito('save', content).done ->
           cmsField.trigger('save.scrivito_editors')
 
-      $(document).on 'click', '[data-scrivito-field-type="enum"]:not([data-editor]), [data-editor="enum"]', (event) ->
+      $(document).on 'click', '[data-scrivito-field-type="enum"]:not([data-editor]), [data-editor~="enum"]', (event) ->
         cmsField = $(event.currentTarget)
         selected = cmsField.scrivito('content')
         values = cmsField.data('values')

@@ -18,7 +18,7 @@ $ ->
         content = ui.value
         cmsField.text(ui.value)
 
-      $('body').on 'click', '[data-editor="slider"]:not(.active)', (event) ->
+      $('body').on 'click', '[data-editor~="slider"]:not(.active)', (event) ->
         cmsField = $(event.currentTarget)
         content = cmsField.scrivito('content')
         min = cmsField.attr('data-min') || 1

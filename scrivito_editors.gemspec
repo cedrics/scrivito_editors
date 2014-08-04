@@ -36,4 +36,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'jquery-ui-rails'
 
   gem.add_development_dependency 'pry'
+  gem.add_development_dependency 'rake'
 end
