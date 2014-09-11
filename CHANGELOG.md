@@ -1,3 +1,7 @@
+# v0.0.14 (unreleased)
+  * Added the `tag_helper`-module containing methods that are needed to render the html for certain
+    editors.
+
 # v0.0.13
   * Added `autosave` option to the string editor to prevent that on every input the content is saved
     to the CMS. This is useful when setting a permalink for example, where intermediate strings
