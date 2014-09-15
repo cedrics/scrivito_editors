@@ -3,7 +3,7 @@ module ScrivitoEditors
   # attributes and their JS editors. These special methods are needed
   # because the editors need additional information that is not provided
   # by the ++cms_tag++ method.
-  module TagHelper
+  module CmsTagHelper
 
     # Allows you to edit an cms ++enum++ attribute using a dropdown
     #

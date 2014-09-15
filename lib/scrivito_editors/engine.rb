@@ -5,8 +5,8 @@ module ScrivitoEditors
   class Engine < ::Rails::Engine
     isolate_namespace ScrivitoEditors
 
-    initializer "my_gem.view_helpers" do
-      ActionView::Base.send :include, TagHelper
+    initializer "scrivito_editors.cms_tag_helper" do
+      ActionView::Base.send :include, CmsTagHelper
     end
   end
 end
